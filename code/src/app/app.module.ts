@@ -3,13 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { HomePage } from '../pages/home/home';
 import { ChartsModule } from 'ng2-charts';
 import 'hammerjs';
 import 'chartjs-plugin-zoom';
+
+import { LoginPage } from '../pages/login/login';
 import { MyApp } from './app.component';
+import { SharedModule } from '../shared/shared.module';
 import { FirebaseService } from '../shared/services/firebase.service';
 
 export const firebaseConfig ={
@@ -26,10 +29,11 @@ export const firebaseConfig ={
 @NgModule({
     declarations: [
         MyApp,
-        HomePage
+        LoginPage
     ],
     imports: [
         BrowserModule,
+        SharedModule,
         IonicModule.forRoot(MyApp),
         AngularFireModule.initializeApp(firebaseConfig),
         AngularFirestoreModule.enablePersistence(),
@@ -38,7 +42,7 @@ export const firebaseConfig ={
     bootstrap: [IonicApp],
     entryComponents: [
         MyApp,
-        HomePage
+        LoginPage
     ],
     providers: [
         StatusBar,

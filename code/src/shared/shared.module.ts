@@ -8,20 +8,11 @@ import { StorageService } from './services/storage.service';
 import { GlobalService } from './services/global.service';
 import { HttpIntercept } from './services/http.interceptor';
 
-import { HighlightDirective } from './directives/highlight.directive';
-import { TelNumDirective } from './directives/tel-num.directive';
-
 @NgModule({
   imports: [
     HttpClientModule,
     IonicStorageModule.forRoot()
-  ],
-  declarations: [
-    HighlightDirective, 
-    TelNumDirective],
-  exports: [ 
-    HighlightDirective, 
-    TelNumDirective ]
+  ]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
