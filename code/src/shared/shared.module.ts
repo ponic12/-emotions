@@ -14,6 +14,17 @@ import { HttpIntercept } from './services/http.interceptor';
     IonicStorageModule.forRoot()
   ]
 })
+@NgModule({
+  imports: [
+    HttpClientModule,
+    IonicStorageModule.forRoot()
+  ],
+  providers:[
+    ApplicationService,
+    StorageService,
+    GlobalService
+  ]
+})
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {

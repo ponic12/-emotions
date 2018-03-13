@@ -31,10 +31,7 @@ export class LoginPage implements OnInit {
   login(): void {
     this.userInfo.username = this.username.toUpperCase();
     switch (this.userInfo.username) {
-      case "U000000":
-        this.navCtrl.push('GuardiaPage', {});
-        break;
-      case "U111111":
+      case "000000":
         this.navCtrl.push('AdminPage', {});
         break;
       default:

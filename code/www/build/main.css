@@ -25683,6 +25683,10 @@ button.with-margin-top[type="submit"] {
   margin-top: 16px;
 }
 
+page-admin .ion-page > ion-content {
+  background: radial-gradient(#def 0%, #907294 92%);
+}
+
 page-login .backKM {
   background: radial-gradient(#ffffff, #6c787c);
 }
@@ -25709,4 +25713,77 @@ page-login .loginBtn {
   width: 95%;
   margin: auto;
   margin-top: 30px;
+}
+
+page-usuario .qrUser {
+  position: absolute;
+  top: 15px;
+  right: 7%;
+}
+
+page-usuario .qrcode img {
+  width: 100px;
+  float: right;
+  -webkit-box-shadow: 1px 1px 4px #868686;
+  box-shadow: 1px 1px 4px #868686;
+}
+
+page-usuario .campoIds {
+  font-weight: bold;
+  width: 70px;
+  float: left;
+}
+
+page-usuario .padInfo {
+  width: 90%;
+  margin: auto;
+  margin-top: 10px;
+}
+
+page-usuario .btnAction {
+  padding: 10px;
+  height: 40px;
+  width: 80%;
+  border-radius: 5px;
+  -webkit-box-shadow: 3px 3px 5px #444;
+  box-shadow: 3px 3px 5px #444;
+}
+
+page-usuario .keyIcon {
+  margin-top: -25px;
+  font-size: 130px;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+  text-align: center;
+}
+
+page-usuario .keyText {
+  text-align: center;
+  font-size: 25px;
+  color: white;
+  font-weight: bold;
+  margin-top: -30px;
+  text-shadow: 1px 1px 3px black;
+}
+
+page-usuario .glass {
+  margin: auto;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  padding: 15px 25px;
+  background-color: green;
+  /*for compatibility with older browsers*/
+  background-image: -webkit-gradient(linear, left top, left bottom, from(lightgreen), to(green));
+  background-image: linear-gradient(lightgreen, green);
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  -webkit-box-shadow: 2px 2px 4px grey;
+  box-shadow: 2px 2px 4px grey;
+}
+
+page-usuario .btnTransfer {
+  border-radius: 50%;
+  margin-left: 10px;
 }
