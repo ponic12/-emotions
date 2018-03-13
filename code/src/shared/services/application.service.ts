@@ -5,10 +5,15 @@ import { LoadingController } from 'ionic-angular';
 @Injectable()
 export class ApplicationService {
     private loader;
-
+    imgPath:any= "../../assets/logo.png";
+    
     constructor(
         public loadingCtrl: LoadingController,
         private toastCtrl: ToastController) {
+    }
+
+    newAlert(data:any):void{
+        alert('Muestra alerta Toolbar');
     }
 
     /**
@@ -18,35 +23,30 @@ export class ApplicationService {
      * @param  {string} message text to display
      * @returns void
      */
-    message(type: string, message: string): void {
-        // TODO: move duration and position to some global definition file
+    message(type: string, message: string, css?: string): void {
+        var cl = 'toast-success';
+        if (css) cl = css;
         let toast = this.toastCtrl.create({
             message,
-            duration: 2000,
+            cssClass:cl,
+            duration: 3000,
             position: 'bottom'
         });
         toast.present();
     }
 
-    /**
-     * Funciton shows the loading overlay
-     * 
-     * @returns Promise<any>
-     */
     showLoading(): Promise<any> {
-        // loader object is being created every time as when loader
-        // is dismissed it is rbeing removed from the view
         this.loader = this.loadingCtrl.create({
-            content: "Please wait..."
+            //content: "cargando...",
+            content: `
+                <img class="logo3D" style="background-color:pink" width=108 height=100 src="assets/spinner.svg">
+            `,
+            cssClass: 'my-loading-class',
+            spinner: 'hide',
         });
         return this.loader.present();
     }
 
-    /**
-     * Funciton hides the loading overlay
-     * 
-     * @returns Promise<any>
-     */
     hideLoading() : Promise<any> {
         return this.loader.dismiss();
     }

@@ -22,4 +22,3 @@ export class FirebaseService {
       return this.test$;
    }
 }
-
