@@ -37,6 +37,7 @@ build/Release
 platforms/
 plugins/
 www/
+code/www/
 node_modules/
 jspm_packages/
 
@@ -61,3 +62,6 @@ typings/
 # dotenv environment variables file
 .env
 
+code/www/build/main.js
+code/www/build/main.js.map
+*.map
