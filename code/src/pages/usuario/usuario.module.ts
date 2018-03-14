@@ -3,6 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 
 import { UsuarioService } from './usuario.service';
 import { UsuarioPage } from './usuario';
+import { FirebaseService } from '../../shared/services/firebase.service';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { UsuarioPage } from './usuario';
   ],
   entryComponents: [ ],
   providers: [
-    UsuarioService
+    UsuarioService,
+    FirebaseService
   ]
 })
 export class UsuarioModule {

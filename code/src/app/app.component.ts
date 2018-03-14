@@ -11,6 +11,9 @@ import { LoginPage } from '../pages/login/login';
     templateUrl: 'app.html'
 })
 export class MyApp implements OnInit, OnDestroy {
+    title: string = "Emotions";
+    version: string = "v1.0";
+    networkStatus: boolean;
     rootPage: any = LoginPage;
 
     constructor(
