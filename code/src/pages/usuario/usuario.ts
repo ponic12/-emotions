@@ -27,17 +27,21 @@ export class UsuarioPage implements OnInit {
   ) {
     console.log('UsuarioPage constructor');
     this.emotions= [ 
-      { img: "assets/imgs/happyness.png", txt: "Alegria", color:'yellow' },
-      { img: "assets/imgs/angry.png", txt: "Furia", color:'orange' }, 
-      { img: "assets/imgs/love.png", txt: "Amor", color:'red' },
-      { img: "assets/imgs/sad.png", txt: "Tristeza", color:'blue'},
-      { img: "assets/imgs/health.png", txt: "Salud", color:'green'},
-      { img: "assets/imgs/scared.png", txt: "Miedo", color: 'violet'}
+      { img: "assets/imgs/happy.png", txt: "Alegria", color:'yellow' },
+      { img: "assets/imgs/angry.png", txt: "Queja", color:'#9d3a9e' }, 
+      { img: "assets/imgs/inlove.png", txt: "Amor", color:'red' },
+      { img: "assets/imgs/sad.png", txt: "Tristeza", color:'#0089ff'},
+      { img: "assets/imgs/thanksfull.png", txt: "Agradecimiento", color:'green'},
+      { img: "assets/imgs/scared.png", txt: "Miedo", color: '#71687b'}
     ];
   }
 
   ngOnInit() {
     console.log('UsuarioPage init');
+  }
+  getColor(col){
+    var exp = 'radial-gradient('+col+' 63%, #fff 79%)';
+    return exp;
   }
 
   save(emo) {
