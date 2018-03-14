@@ -15,10 +15,47 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-div[ion-fixed] { 
-    width: calc(100% - 16px);
-    margin-top: 2px;
+
+.backKM {
+    background: radial-gradient(#def 0%, #8ebbd0 92%);
+    margin-top: 60px;
+    height: calc( 100vh - 44px);
+    padding: 20px;
 }
-button.with-margin-top[type="submit"] {
-    margin-top: 16px;
+
+.titulo{
+    text-shadow: 1px 1px 1px grey;
+    vertical-align: super;
+    font-size: 25px;
+    margin-left: 30px;
 }
+.logo{
+    width: 35px;
+    margin-top: 10px;
+    margin-left: -5px;
+}
+
+.toast-success {
+> div{
+        background-color:green!important;
+    }
+}
+
+.toast-error {
+> div{
+        background-color:red!important;
+    }
+}
+
+
+.iconStatus{
+    color: #bbb;
+    margin-top: 10px;
+    float: right;
+    font-size: 30px;
+ }
+
+ .iconStatusON{
+    color: black;
+ }
+

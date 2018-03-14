@@ -15,6 +15,7 @@ import 'rxjs/add/operator/map';
   templateUrl: 'usuario.html'
 })
 export class UsuarioPage implements OnInit {
+  emotions:any;
 
   constructor(
     private navParams: NavParams, 
@@ -25,13 +26,24 @@ export class UsuarioPage implements OnInit {
     private zone:NgZone
   ) {
     console.log('UsuarioPage constructor');
-
+    this.emotions= [ 
+      { img: "assets/imgs/happyness.png", txt: "Alegria", color:'yellow' },
+      { img: "assets/imgs/angry.png", txt: "Furia", color:'orange' }, 
+      { img: "assets/imgs/love.png", txt: "Amor", color:'red' },
+      { img: "assets/imgs/sad.png", txt: "Tristeza", color:'blue'},
+      { img: "assets/imgs/health.png", txt: "Salud", color:'green'},
+      { img: "assets/imgs/scared.png", txt: "Miedo", color: 'violet'}
+    ];
   }
+
   ngOnInit() {
     console.log('UsuarioPage init');
   }
 
-  confirm() { 
+  save(emo) {
+    this.fs.saveEmotion(emo).then(x=>{
+      this.appSrv.message('Aviso', 'Se ha registrado la emocion!');
+    }) 
 
   }
 }

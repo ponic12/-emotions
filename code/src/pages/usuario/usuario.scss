@@ -4,19 +4,6 @@ page-usuario {
 //     background: radial-gradient(#def 0%, #8ebbd0 92%);
 // }
 
-    .qrUser {
-        position: absolute;
-        top: 15px;
-        right: 7%;
-    }
-
-
-
-    .qrcode img{
-        width: 100px;
-        float: right;
-        box-shadow: 1px 1px 4px #868686;
-    }
 
     .campoIds {
         font-weight: bold;
@@ -85,5 +72,75 @@ page-usuario {
         border-radius: 50%;
         margin-left: 10px;
     }
+
+
+
+    .circleTbxGrp{
+        width: 50px;
+        height: 50px;
+        //Modo: Azul y Negro
+        //background-color: #2675b5;
+        background:transparent;
+        box-shadow: none;
+    }
+
+    .circleTbxSubGrpDisabled{
+        opacity: .5;
+    }
+
+    .circleTbxSubGrp, .clickedBtn{
+        box-shadow: 1px 1px 5px black; //@@ box-shadow: 2px 2px 8px black;
+        border-radius: 50%;
+        position:relative;
+    }
+  
+    .circleTbxSubGrp{
+        width: 80px;
+        height: 80px;
+        background: radial-gradient(#fff 2%, #C2C3C9 65%) !important;
+        top:-14px;
+    }
+
+    .txtSubGrps{
+        font-size: 16px;
+        margin-top: 5px;
+        margin-right: 0px;
+    }
+
+    .borderCircle {
+        margin: auto;
+  
+        //Modo: Azul y Negro
+        border-top: 20px solid #2675b5;
+        //@@ border-bottom: 20px solid #000;
+        
+        // Modo Segat
+        box-shadow: 2px 1px 6px black;
+        
+        // Modo: Cyan y Rojo 
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      
+      // Modo Segat
+      //border-top: 20px solid #337AB7;
+      //border-bottom: 20px solid #094C83;
+  
+      /* -webkit-box-sizing: border-box; */
+      /* box-sizing: border-box; */
+      background-position: 0 0, 100% 0;
+      background-repeat: no-repeat;
+      /* background-size: 20px 100%; */
+  
+      // Modo Segat
+      background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0d…0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2xlc3NoYXQtZ2VuZXJhdGVkKSIgLz48L3N2Zz4=), url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0d…0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2xlc3NoYXQtZ2VuZXJhdGVkKSIgLz48L3N2Zz4=);
+      background-image: -webkit-gradient(linear, left top, left bottom, from(#337AB7), to(#094C83)), -webkit-gradient(linear, left top, left bottom, from(#3acfd5), to(#094C83));
+      background-image: linear-gradient(to bottom, #337AB7 0%, #094C83 100%), linear-gradient(to bottom, #337AB7 0%, #094C83 100%);
+    }
+
+    .borderCircle:active {
+        transform: translateY(4px) !important;
+        box-shadow: 0px 0px 0px transparent;
+      }
 
 }
