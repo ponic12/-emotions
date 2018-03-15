@@ -1,12 +1,15 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Platform, IonicPage } from 'ionic-angular';
+
 import { ApplicationService } from '../../shared/services/application.service';
 import { FirebaseService } from '../../shared/services/firebase.service';
 import { GlobalService } from '../../shared/services/global.service';
+import {PressDirective} from '../../shared/directives/press.gesture.directive';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+
 
 
 @IonicPage()
@@ -48,8 +51,9 @@ export class UsuarioPage implements OnInit {
     this.fs.saveEmotion(emo).then(x=>{
       this.appSrv.message('Aviso', 'Se ha registrado la emocion!');
     }) 
-
   }
+
+  
 }
 
 
