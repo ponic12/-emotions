@@ -7,11 +7,11 @@
       </ion-item>
     </ion-row>
   </ion-card> -->
-  <ion-grid style="top:40px">
+  <ion-grid style="margin-top: 50px !important">
     <ion-row>
       <ion-col col-6 *ngFor="let emo of emotions; let i = index">
         <div class="borderCircle" [ngStyle]="{ 'background': getColor(emo.color)}">
-          <button ion-button class="circleTbxSubGrp" (click)="save(emo)" (longPress)="onLongPress($event)">
+          <button ion-button class="circleTbxSubGrp" (tap)="tapEmo($event, emo)" (press)="pressEmo($event, emo)" >
             <img src="{{ emo.img }}" style="position:absolute" width="100%">
           </button>
         </div>

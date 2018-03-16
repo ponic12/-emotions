@@ -32,7 +32,7 @@ export class UsuarioPage implements OnInit {
     this.emotions= [ 
       { img: "assets/imgs/happy.png", txt: "Alegria", color:'yellow' },
       { img: "assets/imgs/angry.png", txt: "Queja", color:'#9d3a9e' }, 
-      { img: "assets/imgs/inlove.png", txt: "Amor", color:'red' },
+      { img: "assets/imgs/lover.png", txt: "Amor", color:'red' },
       { img: "assets/imgs/sad.png", txt: "Tristeza", color:'#0089ff'},
       { img: "assets/imgs/thanksfull.png", txt: "Agradecimiento", color:'green'},
       { img: "assets/imgs/scared.png", txt: "Miedo", color: '#71687b'}
@@ -53,6 +53,12 @@ export class UsuarioPage implements OnInit {
     }) 
   }
 
+  tapEmo(ev, emo) {
+    this.appSrv.message('Aviso', 'Se ha registrado la emocion!');
+  }
+  pressEmo(ev, emo) {
+    this.appSrv.message('Aviso', 'Abriendo opciones.....');
+  }
   
 }
 
