@@ -45,6 +45,11 @@
 
 
 
+.toast-info {
+> div{
+        background-color:rgba(0, 98, 128, 0.74)!important;
+    }
+}
 
 
 .toast-success {

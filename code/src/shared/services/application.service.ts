@@ -23,8 +23,8 @@ export class ApplicationService {
      * @param  {string} message text to display
      * @returns void
      */
-    message(type: string, message: string, css?: string): void {
-        var cl = 'toast-success';
+    message(message: string, css?: string): void {
+        var cl = 'toast-info';
         if (css) cl = css;
         let toast = this.toastCtrl.create({
             message,
@@ -34,6 +34,7 @@ export class ApplicationService {
         });
         toast.present();
     }
+
 
     showLoading(): Promise<any> {
         this.loader = this.loadingCtrl.create({

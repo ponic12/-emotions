@@ -1,16 +1,16 @@
 <ion-header class="fl_toolbar">
-    <img class="logoTipo" src="assets/imgs/emotions.png">
-    <img class="isoTipo" src="assets/imgs/feellife.png">
+  <img class="logoTipo" src="assets/imgs/emotions.png">
+  <img class="isoTipo" src="assets/imgs/feellife.png">
 </ion-header>
 <ion-content class="usr_back">
-  <ion-grid style="margin-top: 30px !important">
+  <div class="frameLastEmo" *ngIf="lastEmo">
+    <p class="textLastEmo">Ult.emoción: {{lastEmo.emotion}} - {{lastEmo.datetime | date:'dd/MM HH:mm'}} </p>
+  </div>
+  <ion-grid style="margin-top: 20px !important">
     <ion-row>
       <ion-col col-6 *ngFor="let emo of emotions; let i = index">
         <div class="borderCircle" [ngStyle]="{ 'background': getColor(emo.color)}">
-          <button ion-button class="circleTbxSubGrp" 
-          [disabled]="disableButtons"
-          (tap)="tapEmo($event, emo)" 
-          (press)="pressEmo($event, emo)" >
+          <button ion-button class="circleTbxSubGrp" [disabled]="disableButtons" (tap)="tapEmo($event, emo)" (press)="pressEmo($event, emo)">
             <img src="{{ emo.img }}" style="position:absolute" width="100%">
           </button>
         </div>
@@ -18,8 +18,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <div class="frameLastEmo" *ngIf="lastEmo">
-    <p class="textLastEmo" >Ult.emoción: {{lastEmo.emotion}} - {{lastEmo.datetime | date:'dd/MM HH:mm'}} </p>
-  </div>
 
 </ion-content>

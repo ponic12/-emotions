@@ -65,17 +65,17 @@ export class UsuarioPage implements OnInit {
       setTimeout(x => {
         this.disableButtons = false;
       }, 10000);
-      
+
     this.fs.saveEmotion(reg).then(x=>{
-      this.appSrv.message('Aviso', 'Se ha registrado la emocion!');
+      this.appSrv.message('Se ha registrado la emocion!');
       this.lastEmo = reg;
       this.globalSrv.save('lastEmo', this.lastEmo);
     }).catch(err=>{
-      this.appSrv.message('Error', 'Ha ocurrido un error al registrar la emocion!');
+      this.appSrv.message('Ha ocurrido un error al registrar la emocion!');
     })
   }
   pressEmo(ev, emo) {
-    this.appSrv.message('Aviso', 'Abriendo opciones.....');
+    this.appSrv.message('Abriendo opciones.....');
 
   }
 
