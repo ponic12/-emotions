@@ -1,13 +1,9 @@
-<ion-content class="backKM">
-  <!-- <ion-card class="padInfo">
-    <ion-row>
-      <ion-item>
-        <span class="campoIds">Comentario: </span>
-        <span>{{comment}}</span>
-      </ion-item>
-    </ion-row>
-  </ion-card> -->
-  <ion-grid style="margin-top: 50px !important">
+<ion-header class="fl_toolbar">
+    <img class="logoTipo" src="assets/imgs/emotions.png">
+    <img class="isoTipo" src="assets/imgs/feellife.png">
+</ion-header>
+<ion-content class="usr_back">
+  <ion-grid style="margin-top: 30px !important">
     <ion-row>
       <ion-col col-6 *ngFor="let emo of emotions; let i = index">
         <div class="borderCircle" [ngStyle]="{ 'background': getColor(emo.color)}">
@@ -23,7 +19,7 @@
     </ion-row>
   </ion-grid>
   <div class="frameLastEmo" *ngIf="lastEmo">
-    <p class="textLastEmo" >Ultima emoción: {{lastEmo.emotion}} - {{lastEmo.datetime | date:'dd/MM HH:mm'}} </p>
+    <p class="textLastEmo" >Ult.emoción: {{lastEmo.emotion}} - {{lastEmo.datetime | date:'dd/MM HH:mm'}} </p>
   </div>
 
 </ion-content>

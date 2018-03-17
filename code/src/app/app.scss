@@ -16,27 +16,36 @@
 // automatically applied to the <body> element in the app.
 
 
-.backKM {
-    // background: radial-gradient(#5e86af 0%, #003046 92%);
-    margin-top: 60px;
-    height: calc( 100vh - 44px);
-    padding: 20px;
-    background-repeat: repeat;
-    background-image: url('../assets/imgs/back.jpg');
-    background-size: 100vh 100vh;
+
+
+
+
+.fl_toolbar{
+    // background: linear-gradient(#ffffff59 88%, #000000);
+    background: radial-gradient(circle at 50%, #fff, #eee 70%, #ddd 85%, #bdbcbc 100%);
+    // background: white;
+    padding: 10px;
+    margin-top: -10px;
+    box-shadow: 0px 5px 30px #000000;
 }
 
-.titulo{
-    text-shadow: 1px 1px 1px grey;
-    vertical-align: super;
-    font-size: 25px;
-    margin-left: 30px;
-}
-.logo{
-    width: 35px;
+.logoTipo{
+    width: 50px;
     margin-top: 10px;
-    margin-left: -5px;
 }
+
+.isoTipo{
+    width: 200px;
+    height: 80px;
+    margin: auto;
+    position: absolute;
+    right: 0px;
+    left: 0px;
+}
+
+
+
+
 
 .toast-success {
 > div{

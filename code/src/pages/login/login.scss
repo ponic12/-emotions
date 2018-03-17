@@ -1,16 +1,14 @@
 page-login {
-    .backLogin {
-        //background: radial-gradient(#ffffff, rgb(108, 120, 124));
-        //background: radial-gradient(#2675b5, #000);
-        background-repeat: repeat;
-        opacity: 1;
-        background-image: url('../assets/imgs/back.jpg');
-        background-size: 100vh 100vh;
-    }
+  .login_back {
+      background-image:linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url('../assets/imgs/back.jpg');
+      // background: radial-gradient(#000000, rgb(108, 120, 124));
+      // background-size: 100vh 100vh;
+      background-size: cover;
+  }
 
-    .logoKM{
-        margin-top: 70px;
-      }
+  .logoKM{
+      margin-top: 70px;
+  }
 
   .backForm {
     background: radial-gradient(circle at 50%, #fff, #eee 70%, #ddd 85%, #bdbcbc 100%);

@@ -1,8 +1,15 @@
 page-usuario {
 
-// .ion-page > ion-content {
-//     background: radial-gradient(#def 0%, #8ebbd0 92%);
-// }
+    .usr_back {
+        // background: radial-gradient(#5e86af 0%, #003046 92%);
+        padding: 20px;
+        background-image: url('../assets/imgs/back.jpg');
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
     .frameLastEmo{
         text-align: center;
     }
@@ -54,7 +61,7 @@ page-usuario {
         height: 150px;
         border-radius: 50%; 
         padding: 15px 25px;
-        background-color: green; /*for compatibility with older browsers*/
+        background-color: rgb(40, 153, 153); /*for compatibility with older browsers*/
         background-image: linear-gradient(lightgreen,green);
         text-align: center;
         text-decoration: none;
@@ -85,7 +92,7 @@ page-usuario {
         opacity: .5;
     }
 
-  
+
     .circleTbxSubGrp{
         -webkit-box-shadow: 1px 1px 5px black;
         box-shadow: 1px 1px 5px black;
@@ -116,6 +123,6 @@ page-usuario {
     .borderCircle:active {
         transform: translateY(4px) !important;
         box-shadow: 0px 0px 0px transparent;
-      }
+        }
 
 }
