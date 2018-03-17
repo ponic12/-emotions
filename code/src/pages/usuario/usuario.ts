@@ -1,11 +1,10 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { Platform, IonicPage } from 'ionic-angular';
 
 import { ApplicationService } from '../../shared/services/application.service';
 import { FirebaseService } from '../../shared/services/firebase.service';
 import { GlobalService } from '../../shared/services/global.service';
-import {PressDirective} from '../../shared/directives/press.gesture.directive';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -25,6 +24,7 @@ export class UsuarioPage implements OnInit {
     private appSrv: ApplicationService,
     private globalSrv: GlobalService,
     private platform: Platform,
+    private modalCtrl: ModalController,
     private fs:FirebaseService,
     private zone:NgZone
   ) {
@@ -32,9 +32,9 @@ export class UsuarioPage implements OnInit {
     this.emotions= [ 
       { img: "assets/imgs/happy.png", txt: "Alegria", color:'yellow' },
       { img: "assets/imgs/angry.png", txt: "Queja", color:'#9d3a9e' }, 
-      { img: "assets/imgs/lover.png", txt: "Amor", color:'red' },
+      { img: "assets/imgs/thanksfull.png", txt: "Agradecimiento", color:'green'},    
       { img: "assets/imgs/sad.png", txt: "Tristeza", color:'#0089ff'},
-      { img: "assets/imgs/thanksfull.png", txt: "Agradecimiento", color:'green'},
+      { img: "assets/imgs/lover.png", txt: "Amor", color:'red' },
       { img: "assets/imgs/scared.png", txt: "Miedo", color: '#71687b'}
     ];
   }
@@ -58,6 +58,11 @@ export class UsuarioPage implements OnInit {
   }
   pressEmo(ev, emo) {
     this.appSrv.message('Aviso', 'Abriendo opciones.....');
+
+  }
+
+  private saveEmotion(){
+
   }
   
 }

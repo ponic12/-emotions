@@ -17,10 +17,13 @@
 
 
 .backKM {
-    background: radial-gradient(#5e86af 0%, #003046 92%);
+    // background: radial-gradient(#5e86af 0%, #003046 92%);
     margin-top: 60px;
     height: calc( 100vh - 44px);
     padding: 20px;
+    background-repeat: repeat;
+    background-image: url('../assets/imgs/back.jpg');
+    background-size: 100vh 100vh;
 }
 
 .titulo{

@@ -1,11 +1,15 @@
 page-login {
-    .backKM {
-        background: radial-gradient(#ffffff, rgb(108, 120, 124));
+    .backLogin {
+        //background: radial-gradient(#ffffff, rgb(108, 120, 124));
         //background: radial-gradient(#2675b5, #000);
+        background-repeat: repeat;
+        opacity: 1;
+        background-image: url('../assets/imgs/back.jpg');
+        background-size: 100vh 100vh;
     }
 
     .logoKM{
-        margin-top: 50px;
+        margin-top: 70px;
       }
 
   .backForm {
