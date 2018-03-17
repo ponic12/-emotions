@@ -22,13 +22,9 @@ export class FirebaseService {
         return this.test$;
     }
 
-    saveEmotion(emo): Promise<any> {
-        var reg = new Emotion();
-        reg.name = emo.name;
-        reg.intensity = emo.intensity;
-        reg.datetime = new Date().getTime();
+    saveEmotion(pl): Promise<any> {
         var ref = this.afs.collection<Emotion>('emotions');
-        var p = ref.add({ ...reg });
+        var p = ref.add({ ...pl });
         return p;
     }
 }

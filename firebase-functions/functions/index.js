@@ -4,14 +4,16 @@ admin.initializeApp(functions.config().firebase);
 
 exports.saveEmotion = functions.https.onRequest((request, response) => {
     var emotion = request.query.emotion;
+    var user = request.query.user;
     var payload = {};
     if (emotion){
-        if (emotion == 'love'){
-            var lover = request.query.lover;
-            payload.lover = lover;
-        }
+        // if (emotion == 'love'){
+        //     var lover = request.query.lover;
+        //     payload.lover = lover;
+        // }
         var datetime = new Date().getTime();
         payload.datetime = datetime; 
+        payload.user = user;
         payload.emotion = emotion;
         saveEvent(payload, response);
     }
@@ -138,7 +140,7 @@ function saveEvent(payload, response) {
     const fs = admin.firestore();
     fs.collection('emotions').add(payload)
     .then(function(docRef) {
-        console.log("New "+ payload.emotion +" Id: ", docRef);
+        console.log(payload.emotion +" Id: ", docRef);
         var str = 
         "<div>Fecha: "+new Date(payload.datetime)+"</div>" +
         "<div>----------------------------------------------</div>"+

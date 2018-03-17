@@ -25,21 +25,29 @@ export class LoginPage implements OnInit {
   }
   ngOnInit() {
     console.log('LoginPage init');
+    this.globalSrv.get('user').subscribe(x=>{
+      this.userInfo = x;
+    })
     //this.userInfo = this.globalSrv.user;
   }
   ///////////////////////////////////////////////////////////////////  
   login(): void {
-    this.userInfo.username = this.username.toUpperCase();
-    switch (this.userInfo.username) {
-      case "000000":
-        this.navCtrl.push('AdminPage', {});
-        break;
-      default:
-        this.navCtrl.push('UsuarioPage', {});
-        break;
+    if (this.userInfo){
+      this.navCtrl.push('UsuarioPage', {});
     }
-    //this.globalSrv.user = this.userInfo = this.globalSrv.user;;
-    this.initFCM(this.userInfo.legajo);
+    else{
+      this.userInfo = {username:this.username.toUpperCase()};
+      switch (this.userInfo.username) {
+        case "000000":
+          this.navCtrl.push('AdminPage', {});
+          break;
+        default:
+          this.navCtrl.push('UsuarioPage', {});
+          break;
+      }
+      this.globalSrv.save('user', this.userInfo); 
+    }
+    this.initFCM(this.userInfo.username);
   }
   private initFCM(usr) {
     if (((this.platform.is('mobileweb') == true) || (this.platform.is('core') == true)) == false) {

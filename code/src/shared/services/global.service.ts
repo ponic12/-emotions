@@ -8,9 +8,6 @@ import { Observable } from 'rxjs/observable';
 export class GlobalService {
     private vars:any = {};
 
-    //private URL:string = "http://dwin0404/apiproxy/api/";
-    private URL:string = "http://190.225.183.34:8080/apiproxy/api/";
-
     get(alias:string):Observable<any>{
         var obs = this.vars[alias];
         if (!obs){
@@ -29,8 +26,6 @@ export class GlobalService {
     }
     set(alias:string, val:any){
         this.vars[alias].next(val);
-        // this.vars[alias].subscribe(o=>
-        //     o.next(val));
     }
     save(alias:string, val:any){
         this.set(alias, val);
@@ -42,12 +37,6 @@ export class GlobalService {
     }
     private createObservable(val:any):Observable<any>{
         var x = new BehaviorSubject<any>(val);
-        //var x = new Observable(obs => {       
-        // var x =  Observable.create(obs => {     
-        //     //obs.next(val);
-        //     obs.complete();
-        // });
-
         return x;
     }
 
@@ -59,11 +48,6 @@ export class GlobalService {
 
     constructor( private storageSrv: StorageService) { 
         console.log("GlobalService constructor ");
-
-        this.get('urlBase').subscribe(x => {
-            if (x == null)
-                this.set('urlBase', this.URL);
-        } );
         this.storageSrv.get('networkStatus').then(x =>  (x)? this.net.next(x): this.net.next(true));
     }
 }

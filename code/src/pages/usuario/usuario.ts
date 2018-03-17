@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { Platform, IonicPage } from 'ionic-angular';
-
+import { Emotion } from '../../shared/interfaces/emotion';
 import { ApplicationService } from '../../shared/services/application.service';
 import { FirebaseService } from '../../shared/services/firebase.service';
 import { GlobalService } from '../../shared/services/global.service';
@@ -18,6 +18,9 @@ import 'rxjs/add/operator/map';
 })
 export class UsuarioPage implements OnInit {
   emotions:any;
+  user:any;
+  disableButtons:boolean = false;
+  lastEmo:any;
 
   constructor(
     private navParams: NavParams, 
@@ -41,20 +44,33 @@ export class UsuarioPage implements OnInit {
 
   ngOnInit() {
     console.log('UsuarioPage init');
+    this.globalSrv.get('user').subscribe(x =>{
+      this.user = x;
+    });
+    this.globalSrv.get('lastEmo').subscribe(x =>{
+      this.lastEmo = x;
+    })    
   }
   getColor(col){
     var exp = 'radial-gradient('+col+' 63%, #fff 79%)';
     return exp;
   }
 
-  save(emo) {
-    this.fs.saveEmotion(emo).then(x=>{
-      this.appSrv.message('Aviso', 'Se ha registrado la emocion!');
-    }) 
-  }
-
   tapEmo(ev, emo) {
-    this.appSrv.message('Aviso', 'Se ha registrado la emocion!');
+    var reg = new Emotion();
+    reg.emotion = emo.txt;
+    reg.user = this.user.username;
+    reg.datetime = new Date().getTime();
+    this.fs.saveEmotion(reg).then(x=>{
+      this.appSrv.message('Aviso', 'Se ha registrado la emocion!');
+      this.lastEmo = reg;
+      this.disableButtons = true;
+      setTimeout(x => {
+        this.disableButtons = false;
+      }, 10000)
+    }).catch(err=>{
+      this.appSrv.message('Error', 'Ha ocurrido un error al registrar la emocion!');
+    })
   }
   pressEmo(ev, emo) {
     this.appSrv.message('Aviso', 'Abriendo opciones.....');
