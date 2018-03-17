@@ -55,7 +55,7 @@ export class AuthService {
             photoURL:user.photoURL
         }
 
-        userRef.set(data );
+        return userRef.set(data );
     }
   
 }

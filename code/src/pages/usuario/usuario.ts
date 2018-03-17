@@ -64,6 +64,7 @@ export class UsuarioPage implements OnInit {
     this.fs.saveEmotion(reg).then(x=>{
       this.appSrv.message('Aviso', 'Se ha registrado la emocion!');
       this.lastEmo = reg;
+      this.globalSrv.save('lastEmo', this.lastEmo);
       this.disableButtons = true;
       setTimeout(x => {
         this.disableButtons = false;
