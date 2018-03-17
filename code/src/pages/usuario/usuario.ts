@@ -50,7 +50,8 @@ export class UsuarioPage implements OnInit {
   ngOnInit() {
     console.log('UsuarioPage init');
     this.globalSrv.get('user').subscribe(x =>{
-      this.user = x;
+      if (x != null)
+        this.user = x;
     });
     this.globalSrv.get('lastEmo').subscribe(x =>{
       this.lastEmo = x;
