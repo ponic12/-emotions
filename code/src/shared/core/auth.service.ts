@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-//import { Router } from '@angular/router';
 
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -8,13 +7,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs/observable';
 import 'rxjs/operator/switchMap';
 
-interface User {
-    uid:string;
-    email:string;
-    photoURL?:string;
-    displayName?:string;
-    favoriteColor?:string;
-}
+import { User } from './user';
 
 
 @Injectable()
@@ -52,7 +45,8 @@ export class AuthService {
             uid:user.uid,
             email:user.email,
             displayName:user.displayName,
-            photoURL:user.photoURL
+            photoURL:user.photoURL,
+            username:user.uid
         }
 
         return userRef.set(data );

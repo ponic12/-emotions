@@ -23,8 +23,10 @@ export class FirebaseService {
     }
 
     saveEmotion(pl): Promise<any> {
-        var ref = this.afs.collection<Emotion>('emotions');
-        var p = ref.add({ ...pl });
+        const path = `emotions/${pl.user}_${pl.datetime}`;
+        var p = this.afs.doc(path).set(Object.assign({}, pl));
+        // var ref = this.afs.collection<Emotion>('emotions');
+        // var p = ref.add({ ...pl });
         return p;
     }
 }

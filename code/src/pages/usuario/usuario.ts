@@ -1,7 +1,10 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
-import { Platform, IonicPage } from 'ionic-angular';
+import { Platform, IonicPage, ActionSheetController } from 'ionic-angular';
+
 import { Emotion } from '../../shared/interfaces/emotion';
+import { User } from '../../shared/core/user';
+
 import { ApplicationService } from '../../shared/services/application.service';
 import { FirebaseService } from '../../shared/services/firebase.service';
 import { GlobalService } from '../../shared/services/global.service';
@@ -18,11 +21,13 @@ import 'rxjs/add/operator/map';
 })
 export class UsuarioPage implements OnInit {
   emotions:any;
-  user:any;
+  user:User = {username:'', photoURL:'../../assets/imgs/person.png'};
   disableButtons:boolean = false;
   lastEmo:any;
 
   constructor(
+    private actionCtrl: ActionSheetController,
+    private navCtrl: NavController,
     private navParams: NavParams, 
     private appSrv: ApplicationService,
     private globalSrv: GlobalService,
@@ -51,6 +56,37 @@ export class UsuarioPage implements OnInit {
       this.lastEmo = x;
     })    
   }
+
+  openMenuSheet() {
+    let actionSheet = this.actionCtrl.create({
+      title: 'Opciones',
+      cssClass: 'action-sheets-basic-page',
+      buttons: [
+        {
+          text: 'Historial',
+          role: 'destructive',
+          handler: () => {
+            this.navCtrl.push('AdminPage');
+          }
+        },{
+          text: 'Salir',
+          handler: () => {
+            console.log('Logout!!!');
+          }
+        },{
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+
+
+
   getColor(col){
     var exp = 'radial-gradient('+col+' 63%, #fff 79%)';
     return exp;

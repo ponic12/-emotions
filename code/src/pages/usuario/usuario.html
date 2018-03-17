@@ -1,10 +1,17 @@
 <ion-header class="fl_toolbar">
   <img class="logoTipo" src="assets/imgs/emotions.png">
   <img class="isoTipo" src="assets/imgs/feellife.png">
+  <ion-avatar class="fl_options" item-start (click)="openMenuSheet()">
+    <img [src]="user.photoURL">
+  </ion-avatar>
+  <!-- <button class="fl_options" (click)="openMenuSheet()"> -->
+  <!-- <ion-icon name="more"></ion-icon> -->
+  <!-- </button> -->
 </ion-header>
 <ion-content class="usr_back">
   <div class="frameLastEmo" *ngIf="lastEmo">
-    <p class="textLastEmo">Ult.emoción: {{lastEmo.emotion}} - {{lastEmo.datetime | date:'dd/MM HH:mm'}} </p>
+    <p class="textLastEmo">
+      <ion-icon name="clock"></ion-icon> {{lastEmo.emotion}} - {{lastEmo.datetime | date:'dd/MM HH:mm'}} </p>
   </div>
   <ion-grid style="margin-top: 20px !important">
     <ion-row>

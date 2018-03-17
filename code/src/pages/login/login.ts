@@ -26,27 +26,23 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     console.log('LoginPage init');
     this.globalSrv.get('user').subscribe(x=>{
-      this.userInfo = x;
+      if (x != null)
+        this.navCtrl.push('UsuarioPage', {});
     })
     //this.userInfo = this.globalSrv.user;
   }
   ///////////////////////////////////////////////////////////////////  
   login(): void {
-    if (this.userInfo){
-      this.navCtrl.push('UsuarioPage', {});
+    this.userInfo = {username:this.username.toUpperCase()};
+    switch (this.userInfo.username) {
+      case "000000":
+        this.navCtrl.push('AdminPage', {});
+        break;
+      default:
+        this.navCtrl.push('UsuarioPage', {});
+        break;
     }
-    else{
-      this.userInfo = {username:this.username.toUpperCase()};
-      switch (this.userInfo.username) {
-        case "000000":
-          this.navCtrl.push('AdminPage', {});
-          break;
-        default:
-          this.navCtrl.push('UsuarioPage', {});
-          break;
-      }
-      this.globalSrv.save('user', this.userInfo); 
-    }
+    this.globalSrv.save('user', this.userInfo); 
     this.initFCM(this.userInfo.username);
   }
   private initFCM(usr) {

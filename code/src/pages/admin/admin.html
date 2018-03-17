@@ -1,5 +1,15 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Ionic Blank
+        </ion-title>
+    </ion-navbar>
+</ion-header>
 
-<ion-tabs>
-    <ion-tab [root]="tabs1" tabTitle="Inventario" tabIcon="list-box"></ion-tab>
-    <ion-tab [root]="tabs2" tabTitle="Estadisticas" tabIcon="pie"></ion-tab>
-</ion-tabs>
+<ion-content padding>
+
+    <div class="graph-container">
+        <canvas baseChart width="400" height="200" [datasets]="emotData" [options]="graphOptions" [legend]="false" [chartType]="'scatter'"></canvas>
+    </div>
+
+</ion-content>
