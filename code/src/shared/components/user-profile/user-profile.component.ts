@@ -3,13 +3,12 @@ import { AuthService } from '../../core/auth.service';
 
 @Component({
     selector: 'user-profile',
-    templateUrl:'./user-profile.component.html',
-    styleUrls:['./user-profile.component.scss']
+    templateUrl:'./user-profile.component.html'  //styleUrls:['./user-profile.component.scss']
 })
 export class UserProfileComponent {
     
     constructor( public auth: AuthService){
-
+        console.log('UserProfileComponent constructor');
     }
 
 

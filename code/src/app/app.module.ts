@@ -15,6 +15,7 @@ import { StorageService } from '../shared/services/storage.service';
 import { ApplicationService } from '../shared/services/application.service';
 import { PushingService } from '../shared/services/pushing.service';
 
+import { CoreModule } from '../shared/core/core.module';
 
 export const firebaseConfig ={
     apiKey: "AIzaSyC9Zh0FNlSD_BqnRCvnoWXMc91fzzAYd0c",
@@ -33,6 +34,7 @@ export const firebaseConfig ={
         LoginPage
     ],
     imports: [
+        CoreModule,
         BrowserModule,
         SharedModule,
         IonicModule.forRoot(EmotionsApp),

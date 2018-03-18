@@ -55,7 +55,7 @@ export class UsuarioPage implements OnInit {
     this.globalSrv.get('user').subscribe(x => {
       if (x != null) {
         this.user = x;
-        this.navCtrl.setRoot('UsuarioPage');
+        // this.navCtrl.setRoot('UsuarioPage');
         this.pushSrv.initFCM(this.user.username);
         this.fs.getTotals(x.username).subscribe(t => {
           if (t != null)
