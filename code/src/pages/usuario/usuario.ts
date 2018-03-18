@@ -24,6 +24,7 @@ export class UsuarioPage implements OnInit {
   user:User = {username:'', photoURL:'../../assets/imgs/person.png'};
   disableButtons:boolean = false;
   lastEmo:any;
+  totals:any = {};
 
   constructor(
     private actionCtrl: ActionSheetController,
@@ -50,12 +51,17 @@ export class UsuarioPage implements OnInit {
   ngOnInit() {
     console.log('UsuarioPage init');
     this.globalSrv.get('user').subscribe(x =>{
-      if (x != null)
+      if (x != null){
         this.user = x;
+        this.fs.getTotals(x.username).subscribe(t=>{
+          if (t != null)
+            this.totals = t;
+        });
+      }
     });
     this.globalSrv.get('lastEmo').subscribe(x =>{
       this.lastEmo = x;
-    })    
+    });    
   }
 
   openMenuSheet() {
@@ -85,14 +91,6 @@ export class UsuarioPage implements OnInit {
     });
     actionSheet.present();
   }
-
-
-
-  getColor(col){
-    var exp = 'radial-gradient('+col+' 63%, #fff 79%)';
-    return exp;
-  }
-
   tapEmo(ev, emo) {
     var reg = new Emotion();
     reg.emotion = emo.txt;
@@ -113,13 +111,11 @@ export class UsuarioPage implements OnInit {
   }
   pressEmo(ev, emo) {
     this.appSrv.message('Abriendo opciones.....');
-
   }
-
-  private saveEmotion(){
-
+  getColor(col){
+    var exp = 'radial-gradient('+col+' 63%, #fff 79%)';
+    return exp;
   }
-  
 }
 
 

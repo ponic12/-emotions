@@ -123,6 +123,33 @@ page-usuario {
     .borderCircle:active {
         transform: translateY(4px) !important;
         box-shadow: 0px 0px 0px transparent;
-        }
+    }
 
+
+
+    .counter{
+        opacity: 0;
+        width: 25px;
+        height: 25px;
+        margin-top: -95px;
+        margin-left: 72px;
+        background-color: #038ae4;
+        border-radius: 100%;
+        -webkit-box-shadow: 1px 1px 2px black;
+        box-shadow: 3px 3px 10px black;
+    }
+
+    .counterON {
+    opacity: 1;
+    }
+
+    .counterNumber {
+        font-size: 17px;
+        font-family: sans-serif;
+        color: #fff;
+        text-align: center;
+        font-weight: bold;
+        padding-top: 2px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0,1);
+    }            
 }

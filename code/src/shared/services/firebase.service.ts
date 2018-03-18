@@ -22,6 +22,20 @@ export class FirebaseService {
         return this.test$;
     }
 
+    getTotals(username):Observable<any>{
+        var d = new Date();
+        var yyyy = d.getFullYear();
+        var sm = (d.getMonth() + 1); 
+        var mm = ("0" + sm).slice(-2);
+        var sd = d.getDate();
+        var dd = ("0" + sd).slice(-2);
+        var dstr = yyyy + mm + dd;
+        var key = username.toUpperCase() + '_' + dstr;
+        var totRef = this.afs.doc('totalsByDate/'+key);
+        var res = totRef.valueChanges();
+        return res;
+    }
+
     saveEmotion(pl): Promise<any> {
         const path = `emotions/${pl.user}_${pl.datetime}`;
         var p = this.afs.doc(path).set(Object.assign({}, pl));

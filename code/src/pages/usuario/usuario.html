@@ -20,6 +20,9 @@
           <button ion-button class="circleTbxSubGrp" [disabled]="disableButtons" (tap)="tapEmo($event, emo)" (press)="pressEmo($event, emo)">
             <img src="{{ emo.img }}" style="position:absolute" width="100%">
           </button>
+          <div class="counter" [ngClass]="{'counterON': (totals[emo.txt]) > 0}">
+            <div class="counterNumber">{{totals[emo.txt]}}</div>
+          </div>
         </div>
         <ion-label class="txtSubGrps">{{emo.txt}}</ion-label>
       </ion-col>
