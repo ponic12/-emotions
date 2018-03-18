@@ -11,7 +11,7 @@ exports.emotionEvent = functions.firestore.document('/emotions/{eid}').onWrite(e
     const eid = event.params.eid;
     var info = event.data;
     var oldVal = event.data.previous.data();
-    
+
     var newVal = {};
     try {
         newVal = info.data();
@@ -23,96 +23,49 @@ exports.emotionEvent = functions.firestore.document('/emotions/{eid}').onWrite(e
     if (newVal) {
         if (oldVal) { // UPDATE
             console.log('item update: ', newVal);
-
         }
         else {  // INSERT  
             var d = new Date(newVal.datetime);
             var yyyy = d.getFullYear();
-            var mm = d.getMonth();
-            var dd = d.getDay();
-            console.log('yyyy:', yyyy.toString());
-            console.log('mm:', mm.toString());
-            console.log('dd:', dd.toString());
-            var dstr = yyyy.toString() + mm.toString() + dd.toString();
-            console.log('dstr: ', dstr);
-
+            var sm = (d.getMonth() + 1); 
+            var mm = ("0" + sm).slice(-2);
+            var sd = d.getDate();
+            var dd = ("0" + sd).slice(-2);
+            var dstr = yyyy + mm + dd;
             var key = newVal.user + '_' + dstr;
-            console.log('key: ', key);
-
-            var ref = fs.collection('totalsByDate').doc(key).get()
-                .then(doc => {
-                    var item = doc.data();
-                    var val = item[newVal.emotion];
-                    console.log('val: ', val);
-                    if (val)
-                        item[newVal.emotion] = val++;
-                    else
-                        item[newVal.emotion] = 1;
-
-                    ref.set(item).then(c => console.log('Totales actualizados para: ', key));
-                })
-                .catch(err => {
-                    console.log('Error: updating key totals:', err);
-                });
-
-            // Buscar regsitro diario del usuario o crear uno
-            // El ID = 'USERNAME_DATE'
-            // Si la emocion ya existe en el registro:
-            // ---> Incrementar la contador de emocion diaria ++
-            // Si no existe:
-            // ---> Actualizar registro agregando campo con contador = 1
+            aggregateTotals(key, newVal.emotion);
         }
     }
     return true;
 });
 
-exports.testEvent = functions.firestore.document('/test/{id}').onWrite(event => {
-    const id = event.params.id;
-    var info = event.data;
-    
-    var newVal = {};
-    try {
-        newVal = info.data();
-        console.log('newVal: ', newVal);
-    }
-    catch (e) {
-        console.log('reg delete: ', oldVal);
-    }
-    if (newVal) {
-        var oldDoc = event.data.previous;
-        try{
-            var oldVal = oldDoc.data();
-            if (oldVal) { // UPDATE
-                console.log('updating old: ', oldVal);
+function aggregateTotals(key, emo) {
+    var ref = fs.collection('totalsByDate').doc(key);
+    ref.get()
+        .then(doc => {
+            var item = doc.data();
+            //console.log('totalsByDate reg: ', item);
+
+            if (item) {
+                if (item[emo])
+                    item[emo] = item[emo] + 1;
+                else
+                    item[emo] = 1;
+                //console.log('update item: ', item);
+                ref.set(item).then(c => console.log('FIN: update totalsByDate: ', key));
             }
-            else {  // INSERT  
-                console.log('item add: ', newVal);
-                var d = new Date(newVal.datetime);
-                var yyyy = d.getFullYear();
-                var mm = d.getMonth();
-                var dd = d.getDay();
-                var dstr = yyyy && mm && dd;
-    
-                var key = newVal.user + '_' + dstr;
-                console.log('key: ', key);
-            }            
-        }
-        catch(err){
-            console.log('OLD VAL: ',err);
-        }
-    }
-});
-
-
-/*
-ID: USERNAME_DATE
-QUEJA: 1
-ALEGRIA: 3
-AGRADECIMIENTO: 1
-MIEDO: 1
-AMOR:5
-*/
-
+            else {// NUEVO registro
+                var x = {};
+                x[emo] = 1;
+                //console.log('insert item: ', x);
+                ref.set(x).then(c => console.log('FIN: new totalsByDate: ', key));
+            }
+        })
+        .catch(err => {
+            console.log('Error: updating key totals:', err);
+        });
+    return ref;
+}
 
 
 
