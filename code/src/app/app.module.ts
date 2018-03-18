@@ -6,12 +6,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { ChartsModule } from 'ng2-charts';
-import 'hammerjs';
-import 'chartjs-plugin-zoom';
 
 import { LoginPage } from '../pages/login/login';
-import { MyApp } from './app.component';
+import { EmotionsApp } from './app.component';
 import { SharedModule } from '../shared/shared.module';
 import { GlobalService } from '../shared/services/global.service';
 import { StorageService } from '../shared/services/storage.service';
@@ -30,20 +27,19 @@ export const firebaseConfig ={
 
 @NgModule({
     declarations: [
-        MyApp,
+        EmotionsApp,
         LoginPage
     ],
     imports: [
         BrowserModule,
         SharedModule,
-        IonicModule.forRoot(MyApp),
+        IonicModule.forRoot(EmotionsApp),
         AngularFireModule.initializeApp(firebaseConfig),
-        AngularFirestoreModule.enablePersistence(),
-        ChartsModule
+        AngularFirestoreModule.enablePersistence()
     ],
     bootstrap: [IonicApp],
     entryComponents: [
-        MyApp,
+        EmotionsApp,
         LoginPage
     ],
     providers: [

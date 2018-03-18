@@ -1,28 +1,28 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { GlobalService } from '../shared/services/global.service';
 import { LoginPage } from '../pages/login/login';
 
-
 @Component({
     templateUrl: 'app.html'
 })
-export class MyApp implements OnInit, OnDestroy {
+export class EmotionsApp implements OnInit, OnDestroy {
     title: string = "Emotions";
     version: string = "v1.0";
     networkStatus: boolean;
     rootPage: any = LoginPage;
 
     constructor(
-        platform: Platform,
-        statusBar: StatusBar,
-        splashScreen: SplashScreen,
+        private navCtrl: NavController,
+        private platform: Platform,
+        private statusBar: StatusBar,
+        private splashScreen: SplashScreen,
         private globalSrv:GlobalService,
     ) {
-        console.log('MyApp constructor');
+        console.log('EmotionsApp constructor');
         platform.ready().then(() => {
             statusBar.styleDefault();
             splashScreen.hide();
@@ -30,9 +30,13 @@ export class MyApp implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        console.log('ToolboxAppPage destroy');
+        console.log('EmotionsAppPage destroy');
     }
     ngOnInit(): void {
-        console.log('ToolboxApp init');
+        console.log('EmotionsApp init');
+        this.globalSrv.get('user').subscribe(x=>{
+            if (x != null)
+              this.navCtrl.push('UsuarioPage', {});
+        })
     }
 }

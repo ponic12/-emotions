@@ -24,8 +24,8 @@ export class AdminPage implements OnInit , OnChanges {
    emot$: Observable<ITotals[]>; 
    
    constructor(
-      public navCtrl: NavController,
-      public fs:FirebaseService
+      private navCtrl: NavController,
+      private fs:FirebaseService
       ) {
    }
 

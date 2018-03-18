@@ -8,6 +8,7 @@ import { User } from '../../shared/core/user';
 import { ApplicationService } from '../../shared/services/application.service';
 import { FirebaseService } from '../../shared/services/firebase.service';
 import { GlobalService } from '../../shared/services/global.service';
+import { PushingService } from '../../shared/services/pushing.service';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -31,6 +32,7 @@ export class UsuarioPage implements OnInit {
     private navCtrl: NavController,
     private navParams: NavParams, 
     private appSrv: ApplicationService,
+    private pushSrv: PushingService,
     private globalSrv: GlobalService,
     private platform: Platform,
     private modalCtrl: ModalController,
@@ -53,6 +55,7 @@ export class UsuarioPage implements OnInit {
     this.globalSrv.get('user').subscribe(x =>{
       if (x != null){
         this.user = x;
+        this.pushSrv.initFCM(this.user.username);
         this.fs.getTotals(x.username).subscribe(t=>{
           if (t != null)
             this.totals = t;
