@@ -12,6 +12,7 @@ import { PushingService } from '../../shared/services/pushing.service';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { AuthService } from '../../shared/core/auth.service';
 
 
 
@@ -25,9 +26,11 @@ export class UsuarioPage implements OnInit {
   user: User = { username: '', photoURL: '../../assets/imgs/person.png' };
   disableButtons: boolean = false;
   lastEmo: any;
+  photoPath:string;
   totals: any = {};
 
   constructor(
+    private authSrv: AuthService,
     private actionCtrl: ActionSheetController,
     private navCtrl: NavController,
     private navParams: NavParams,
@@ -48,6 +51,11 @@ export class UsuarioPage implements OnInit {
       { img: "assets/imgs/lover.png", txt: "Amor", color: 'red' },
       { img: "assets/imgs/scared.png", txt: "Miedo", color: '#71687b' }
     ];
+
+    let dn = this.navParams.get('displayName');
+    let ph = this.navParams.get('photoURL');
+    this.photoPath = ph;
+    this.appSrv.message('Bienvenido: ' + dn);
   }
 
   ngOnInit() {
@@ -87,6 +95,8 @@ export class UsuarioPage implements OnInit {
           text: 'Salir',
           handler: () => {
             console.log('Logout!!!');
+            this.authSrv.signOutUser();
+            this.appSrv.message('Logout.....');
           }
         }, {
           text: 'Cancelar',
