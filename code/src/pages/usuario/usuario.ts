@@ -21,51 +21,55 @@ import 'rxjs/add/operator/map';
   templateUrl: 'usuario.html'
 })
 export class UsuarioPage implements OnInit {
-  emotions:any;
-  user:User = {username:'', photoURL:'../../assets/imgs/person.png'};
-  disableButtons:boolean = false;
-  lastEmo:any;
-  totals:any = {};
+  emotions: any;
+  user: User = { username: '', photoURL: '../../assets/imgs/person.png' };
+  disableButtons: boolean = false;
+  lastEmo: any;
+  totals: any = {};
 
   constructor(
     private actionCtrl: ActionSheetController,
     private navCtrl: NavController,
-    private navParams: NavParams, 
+    private navParams: NavParams,
     private appSrv: ApplicationService,
     private pushSrv: PushingService,
     private globalSrv: GlobalService,
     private platform: Platform,
     private modalCtrl: ModalController,
-    private fs:FirebaseService,
-    private zone:NgZone
+    private fs: FirebaseService,
+    private zone: NgZone
   ) {
     console.log('UsuarioPage constructor');
-    this.emotions= [ 
-      { img: "assets/imgs/happy.png", txt: "Alegria", color:'yellow' },
-      { img: "assets/imgs/angry.png", txt: "Queja", color:'#9d3a9e' }, 
-      { img: "assets/imgs/thanksfull.png", txt: "Agradecimiento", color:'green'},    
-      { img: "assets/imgs/sad.png", txt: "Tristeza", color:'#0089ff'},
-      { img: "assets/imgs/lover.png", txt: "Amor", color:'red' },
-      { img: "assets/imgs/scared.png", txt: "Miedo", color: '#71687b'}
+    this.emotions = [
+      { img: "assets/imgs/happy.png", txt: "Alegria", color: 'yellow' },
+      { img: "assets/imgs/angry.png", txt: "Queja", color: '#9d3a9e' },
+      { img: "assets/imgs/thanksfull.png", txt: "Agradecimiento", color: 'green' },
+      { img: "assets/imgs/sad.png", txt: "Tristeza", color: '#0089ff' },
+      { img: "assets/imgs/lover.png", txt: "Amor", color: 'red' },
+      { img: "assets/imgs/scared.png", txt: "Miedo", color: '#71687b' }
     ];
   }
 
   ngOnInit() {
     console.log('UsuarioPage init');
-    this.globalSrv.get('user').subscribe(x =>{
-      if (x != null){
+    this.globalSrv.get('user').subscribe(x => {
+      if (x != null) {
         this.user = x;
         this.navCtrl.setRoot('UsuarioPage');
         this.pushSrv.initFCM(this.user.username);
-        this.fs.getTotals(x.username).subscribe(t=>{
+        this.fs.getTotals(x.username).subscribe(t => {
           if (t != null)
             this.totals = t;
         });
       }
     });
-    this.globalSrv.get('lastEmo').subscribe(x =>{
+    this.globalSrv.get('lastEmo').subscribe(x => {
       this.lastEmo = x;
-    });    
+    });
+    this.globalSrv.get('pushData').subscribe(x => {
+      if (x != null)
+        this.evalNotification(x);
+    })
   }
 
   openMenuSheet() {
@@ -79,12 +83,12 @@ export class UsuarioPage implements OnInit {
           handler: () => {
             this.navCtrl.push('AdminPage');
           }
-        },{
+        }, {
           text: 'Salir',
           handler: () => {
             console.log('Logout!!!');
           }
-        },{
+        }, {
           text: 'Cancelar',
           role: 'cancel',
           handler: () => {
@@ -101,24 +105,34 @@ export class UsuarioPage implements OnInit {
     reg.user = this.user.username;
     reg.datetime = new Date().getTime();
     this.disableButtons = true;
-      setTimeout(x => {
-        this.disableButtons = false;
-      }, 10000);
+    setTimeout(x => {
+      this.disableButtons = false;
+    }, 10000);
 
-    this.fs.saveEmotion(reg).then(x=>{
+    this.fs.saveEmotion(reg).then(x => {
       this.appSrv.message('Se ha registrado la emocion!');
       this.lastEmo = reg;
       this.globalSrv.save('lastEmo', this.lastEmo);
-    }).catch(err=>{
+    }).catch(err => {
       this.appSrv.message('Ha ocurrido un error al registrar la emocion!');
     })
   }
   pressEmo(ev, emo) {
     this.appSrv.message('Abriendo opciones.....');
   }
-  getColor(col){
-    var exp = 'radial-gradient('+col+' 63%, #fff 79%)';
+  getColor(col) {
+    var exp = 'radial-gradient(' + col + ' 63%, #fff 79%)';
     return exp;
+  }
+
+
+  private evalNotification(data) {
+    if (data.type == "config") {
+      this.appSrv.message('Configuracion remota');
+    }
+    if (data.type == "chat") {
+      this.appSrv.message('Mensaje remoto');
+    }
   }
 }
 

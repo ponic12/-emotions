@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from 'ionic-angular';
 
 import { GlobalService } from '../../shared/services/global.service';
+
 
 @Component({
   selector: 'page-login',
@@ -12,12 +14,17 @@ export class LoginPage implements OnInit {
   userInfo: any = {username:'', password:''};
 
   constructor(
-    private globalSrv: GlobalService
+    private globalSrv: GlobalService,
+    private navCtrl: NavController
   ) {
     console.log('LoginPage constructor');
   }
   ngOnInit() {
     console.log('LoginPage init');
+    this.globalSrv.get('user').subscribe(x => {
+      if (x != null)
+          this.navCtrl.push('UsuarioPage', {});
+  });
   }
   ///////////////////////////////////////////////////////////////////  
   signin(): void {
