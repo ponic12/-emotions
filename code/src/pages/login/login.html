@@ -2,7 +2,7 @@
   <ion-row class="logoKM">
     <ion-col col-3></ion-col>
     <ion-col style="text-align:center">
-      <img src="assets/imgs/emotions.png" style="width:100%; max-width:250px;" >
+      <img src="assets/imgs/emotions.png" style="width:100%; max-width:250px;">
     </ion-col>
     <ion-col col-3></ion-col>
   </ion-row>
@@ -17,8 +17,12 @@
             <ion-input name="usuario" [(ngModel)]="username" telnum></ion-input>
           </ion-item>
           <ion-item floating style="background:transparent">
+            <ion-label floating>Email</ion-label>
+            <ion-input type="email" name="email" [(ngModel)]="email" telnum></ion-input>
+          </ion-item>
+          <ion-item floating style="background:transparent">
             <ion-label floating>Contraseña</ion-label>
-            <ion-input name="contrasena" [(ngModel)]="password"></ion-input>
+            <ion-input type="password" name="contrasena" [(ngModel)]="password"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>

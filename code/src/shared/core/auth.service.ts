@@ -10,6 +10,7 @@ import 'rxjs/operator/switchMap';
 // import 'rxjs/add/observable/throw';
 
 import { User } from './user';
+import { ApplicationService } from '../services/application.service';
 
 
 @Injectable()
@@ -17,9 +18,9 @@ export class AuthService {
     user: Observable<User>;
 
     constructor(
+        private appSrv: ApplicationService,
         private afAuth: AngularFireAuth,
-        private afs: AngularFirestore) //private router:Router 
-    {
+        private afs: AngularFirestore){
         console.log('AuthService constructor');
 
         this.user = this.afAuth.authState
@@ -29,11 +30,35 @@ export class AuthService {
                 else
                     return Observable.of(null);
             });
+
+        this.afAuth.authState.subscribe(data => {
+            this.appSrv.message('Bienvenido: '+data.email);
+        });
     }
 
     googleLogin() {
         const provider = new firebase.auth.GoogleAuthProvider();
         return this.oAuthLogin(provider);
+    }
+
+    async signInUser(email, pass){
+        try{
+            const res = await this.afAuth.auth.signInWithEmailAndPassword(email, pass);
+            console.log(res);
+        }
+        catch (err){
+            console.error(err);
+        }
+    }
+
+    async registerUser(email, pass){
+        try{
+            const res = await this.afAuth.auth.createUserWithEmailAndPassword(email, pass);
+            console.log(res);
+        }
+        catch (err){
+            console.error(err);
+        }
     }
 
     private oAuthLogin(provider) {
@@ -43,6 +68,7 @@ export class AuthService {
             )
     }
 
+    
     private updateUserData(user) {
         const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
 
