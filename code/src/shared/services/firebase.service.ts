@@ -23,6 +23,7 @@ export class FirebaseService {
     }
 
     getTotals(username):Observable<any>{
+        var un = this.getUserKey(username);
         var d = new Date();
         var yyyy = d.getFullYear();
         var sm = (d.getMonth() + 1); 
@@ -30,7 +31,7 @@ export class FirebaseService {
         var sd = d.getDate();
         var dd = ("0" + sd).slice(-2);
         var dstr = yyyy + mm + dd;
-        var key = username.toUpperCase() + '_' + dstr;
+        var key = un + '_' + dstr;
         var totRef = this.afs.doc('totalsByDate/'+key);
         var res = totRef.valueChanges();
         return res;
@@ -42,5 +43,10 @@ export class FirebaseService {
         // var ref = this.afs.collection<Emotion>('emotions');
         // var p = ref.add({ ...pl });
         return p;
+    }
+    getUserKey(username):string{
+        var str = username.replace(/\s/g,'');
+        str = str.toUpperCase();
+        return str;
     }
 }

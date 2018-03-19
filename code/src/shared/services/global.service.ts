@@ -25,6 +25,8 @@ export class GlobalService {
         }
     }
     set(alias:string, val:any){
+        if (!this.vars[alias])
+            this.vars[alias] = this.createObservable(null);
         this.vars[alias].next(val);
     }
     save(alias:string, val:any){
