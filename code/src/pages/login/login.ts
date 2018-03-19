@@ -12,9 +12,8 @@ import { ApplicationService } from '../../shared/services/application.service';
 })
 export class LoginPage implements OnInit {
   username: string;
-  password: string;
   email: string;
-
+  password: string;
 
   constructor(
     private globalSrv: GlobalService,

@@ -3,8 +3,9 @@ import { NavController, IonicPage } from 'ionic-angular';
 
 import { GlobalService } from '../../shared/services/global.service';
 import { AuthService } from '../../shared/core/auth.service';
+import { ApplicationService } from '../../shared/services/application.service';
 
-// @IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html'
@@ -16,6 +17,8 @@ export class SignUpPage implements OnInit {
 
   constructor(
     private globalSrv: GlobalService,
+    private appSrv: ApplicationService,
+    private navCtrl: NavController,
     private authSrv: AuthService
   ) {
     console.log('SignUpPage constructor');
