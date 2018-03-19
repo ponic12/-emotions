@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, IonicPage } from 'ionic-angular';
 
 import { GlobalService } from '../../shared/services/global.service';
 import { AuthService } from '../../shared/core/auth.service';
 import { ApplicationService } from '../../shared/services/application.service';
 
-
+@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
@@ -13,7 +13,8 @@ import { ApplicationService } from '../../shared/services/application.service';
 export class LoginPage implements OnInit {
   username: string;
   password: string;
-  userInfo: any = { username: '', password: '' };
+  email: string;
+
 
   constructor(
     private globalSrv: GlobalService,
@@ -25,34 +26,38 @@ export class LoginPage implements OnInit {
   }
   ngOnInit() {
     console.log('LoginPage init');
-    this.globalSrv.get('user').subscribe(x => {
-      if (x != null)
-        this.navCtrl.setRoot('UsuarioPage');
-    });
-    this.authSrv.verifyLoggedIn().subscribe(data => {
-      this.navCtrl.setRoot('UsuarioPage', data);
-    });
-  }
-  ///////////////////////////////////////////////////////////////////  
-  signin() {
-    this.userInfo = { username: this.username.toUpperCase() };
-    this.authSrv.signInUser(this.userInfo.email, this.userInfo.password)
-      .then(res => {
-        if (res) {
-          this.navCtrl.setRoot('UsuarioPage');
-        }
-      });
-    this.globalSrv.save('user', this.userInfo);
+    this.globalSrv.get('user').subscribe(data =>
+      this.go(data)
+    );
+    this.authSrv.verifyLoggedIn().subscribe(data =>
+      this.go(data)
+    );
   }
   signup(): void {
     this.navCtrl.push('SignUpPage');
   }
+  signin() {
+    this.authSrv.signInUser(this.email, this.password).then(data =>
+      this.initUser(data)
+    );
+  }
   loginGoogle() {
-    this.authSrv.loginGoogle().then(res => {
-      if (res) {
-        this.navCtrl.setRoot('UsuarioPage');
-      }
-    });
+    this.authSrv.loginGoogle().then(data =>
+      this.initUser(data)
+    );
+  }
+
+  private initUser(data){
+    var o = {
+      username:this.username.toUpperCase(),
+      email:this.email
+    };
+    this.globalSrv.save('user', o);
+    this.go(data);
+  }
+  private go(data) {
+    if (data)
+      this.navCtrl.setRoot('UsuarioPage', data);
   }
 
 }

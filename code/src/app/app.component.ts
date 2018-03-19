@@ -3,8 +3,6 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { LoginPage } from '../pages/login/login';
-
 @Component({
     templateUrl: 'app.html'
 })
@@ -12,7 +10,7 @@ export class EmotionsApp implements OnInit, OnDestroy {
     title: string = "Emotions";
     version: string = "v1.0";
     networkStatus: boolean;
-    rootPage: any = LoginPage;
+    rootPage: any = 'LoginPage';
 
     constructor(
         private platform: Platform,

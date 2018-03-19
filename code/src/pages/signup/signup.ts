@@ -9,11 +9,10 @@ import { AuthService } from '../../shared/core/auth.service';
   selector: 'page-signup',
   templateUrl: 'signup.html'
 })
-export class SignupPage implements OnInit {
+export class SignUpPage implements OnInit {
   username: string;
   email:string;
   password: string;
-  userInfo: any = { username: '', email: '',  password: '' };
 
   constructor(
     private globalSrv: GlobalService,

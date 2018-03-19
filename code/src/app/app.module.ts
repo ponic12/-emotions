@@ -7,7 +7,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
-import { LoginPage } from '../pages/login/login';
 import { EmotionsApp } from './app.component';
 import { SharedModule } from '../shared/shared.module';
 import { GlobalService } from '../shared/services/global.service';
@@ -30,8 +29,7 @@ export const firebaseConfig ={
 
 @NgModule({
     declarations: [
-        EmotionsApp,
-        LoginPage
+        EmotionsApp
     ],
     imports: [
         CoreModule,
@@ -43,8 +41,7 @@ export const firebaseConfig ={
     ],
     bootstrap: [IonicApp],
     entryComponents: [
-        EmotionsApp,
-        LoginPage
+        EmotionsApp
     ],
     providers: [
         PushingService,

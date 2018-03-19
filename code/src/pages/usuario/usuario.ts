@@ -53,9 +53,14 @@ export class UsuarioPage implements OnInit {
     ];
 
     let dn = this.navParams.get('displayName');
+    if (dn) 
+      this.appSrv.message('Bienvenido: ' + dn);
+    
     let ph = this.navParams.get('photoURL');
-    this.photoPath = ph;
-    this.appSrv.message('Bienvenido: ' + dn);
+    if (ph)
+      this.photoPath = ph;
+    else
+      this.photoPath = "assets/imgs/person.png";
   }
 
   ngOnInit() {
@@ -95,8 +100,7 @@ export class UsuarioPage implements OnInit {
           text: 'Salir',
           handler: () => {
             console.log('Logout!!!');
-            this.authSrv.signOutUser();
-            this.appSrv.message('Logout.....');
+            this.logout();
           }
         }, {
           text: 'Cancelar',
@@ -135,7 +139,13 @@ export class UsuarioPage implements OnInit {
     return exp;
   }
 
-
+  private logout(){
+    this.appSrv.message('Saliendo...');
+    this.globalSrv.save('user', null);
+    this.authSrv.signOutUser();
+    this.navCtrl.setRoot('LoginPage');
+    window.location.reload();
+  }
   private evalNotification(data) {
     if (data.type == "config") {
       this.appSrv.message('Configuracion remota');
