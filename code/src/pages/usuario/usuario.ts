@@ -144,7 +144,6 @@ export class UsuarioPage implements OnInit {
     this.globalSrv.save('user', null);
     this.authSrv.signOutUser();
     this.navCtrl.setRoot('LoginPage');
-    window.location.reload();
   }
   private evalNotification(data) {
     if (data.type == "config") {
