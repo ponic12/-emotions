@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "779781116669",
+    "firebase_url": "https://emotionsdb-f832f.firebaseio.com",
+    "project_id": "emotionsdb-f832f",
+    "storage_bucket": "emotionsdb-f832f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779781116669:android:c86e6e2d724494eb",
+        "android_client_info": {
+          "package_name": "com.feellife.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779781116669-dri7lhnd2g7ptl1er0m5ocg2mgmftjiq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwgB2GE7-g7zm0o4zt-r3pXHWuA6JfpGk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

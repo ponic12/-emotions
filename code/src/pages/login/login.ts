@@ -54,12 +54,16 @@ export class LoginPage implements OnInit {
     this.navCtrl.push('SignUpPage');
   }
   signin() {
-    this.authSrv.signInUser(this.email, this.password).then(data =>{
-      this.initUser(data)
-    });
+    // this.authSrv.signInUser(this.email, this.password).then(data =>{
+    //   this.initUser(data)
+    // });
+    var data = {displayName:this.username};
+    this.initUser(data);
   }
   loginGoogle() {
-    this.authSrv.loginGoogle();
+    this.authSrv.loginGoogle().then(x=>{
+      this.navCtrl.push('UsuarioPage')
+    })
     // .then(data =>
     //   this.initUser(data)
     // );

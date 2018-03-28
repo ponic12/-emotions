@@ -41,6 +41,7 @@ export class AuthService {
 
     signOutUser() {
         this.afAuth.auth.signOut();
+        //this.provider.loggedin = false;
         
 
 
@@ -78,9 +79,12 @@ export class AuthService {
 
     private oAuthLogin(provider) {
         return this.afAuth.auth.signInWithRedirect(provider) // signInwithPopup para Browser
-            .then((cred) =>
-                this.updateUserData(cred.user)
-            )
+            .then((cred) =>{
+                this.updateUserData(cred.user);
+                // this.afAuth.auth.getRedirectResult().then(res=>                
+                //     console.log('logged in Google')
+                // )
+            })
     }
 
 
