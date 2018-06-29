@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 
-import { GlobalService } from '../../shared/services/global.service';
 import { AuthService } from '../../shared/core/auth.service';
-import { ApplicationService } from '../../shared/services/application.service';
+import { ApplicationService, GlobalService } from 'fwk-services';
 
 @IonicPage()
 @Component({

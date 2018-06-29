@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
-import { ApplicationService } from './application.service';
-import { GlobalService } from './global.service';
+import { ApplicationService, GlobalService } from 'fwk-services'
 
 declare const FCMPlugin: any;
 

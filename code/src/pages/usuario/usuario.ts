@@ -5,9 +5,8 @@ import { Platform, IonicPage, ActionSheetController } from 'ionic-angular';
 import { Emotion } from '../../shared/interfaces/emotion';
 import { User } from '../../shared/core/user';
 
-import { ApplicationService } from '../../shared/services/application.service';
+import { ApplicationService, GlobalService } from 'fwk-services';
 import { FirebaseService } from '../../shared/services/firebase.service';
-import { GlobalService } from '../../shared/services/global.service';
 import { PushingService } from '../../shared/services/pushing.service';
 
 import { Observable } from 'rxjs/Observable';

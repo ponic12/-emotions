@@ -9,9 +9,8 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { EmotionsApp } from './app.component';
 import { SharedModule } from '../shared/shared.module';
-import { GlobalService } from '../shared/services/global.service';
 import { StorageService } from '../shared/services/storage.service';
-import { ApplicationService } from '../shared/services/application.service';
+import { ApplicationService, GlobalService } from 'fwk-services';
 import { PushingService } from '../shared/services/pushing.service';
 
 import { CoreModule } from '../shared/core/core.module';

@@ -4,13 +4,13 @@ import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 
-// import { Observable } from 'rxjs/observable';
-import { Observable } from 'rxjs/Rx';
-import 'rxjs/operator/switchMap';
+import { Observable } from 'rxjs/Observable';
 // import 'rxjs/add/observable/throw';
+import 'rxjs/operator/switchMap';
+//import 'rxjs/add/operator/switchMap';
 
 import { User } from './user';
-
+  
 
 @Injectable()
 export class AuthService {
