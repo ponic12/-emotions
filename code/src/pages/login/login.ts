@@ -34,9 +34,6 @@ export class LoginPage implements OnInit {
   }
   ngOnInit() {
     console.log('LoginPage init');
-    // this.globalSrv.get('user').subscribe(data =>
-    //   this.go(data)
-    // );
     this.authSrv.verifyLoggedIn().subscribe(data =>{
       if (data){
         var o = {

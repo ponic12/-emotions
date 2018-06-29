@@ -53,7 +53,7 @@ export class UsuarioPage implements OnInit {
 
     let dn = this.navParams.get('displayName');
     if (dn) 
-      this.appSrv.message('Bienvenido: ' + dn);
+      this.appSrv.message('Aviso: ','Bienvenido: ' + dn);
     
     let ph = this.navParams.get('photoURL');
     if (ph)
@@ -64,7 +64,7 @@ export class UsuarioPage implements OnInit {
 
   ngOnInit() {
     console.log('UsuarioPage init');
-    this.globalSrv.get('user').subscribe(x => {
+    this.globalSrv.get('user').then(x => {
       if (x != null) {
         this.user = x;
         // this.navCtrl.setRoot('UsuarioPage');
@@ -75,10 +75,10 @@ export class UsuarioPage implements OnInit {
         });
       }
     });
-    this.globalSrv.get('lastEmo').subscribe(x => {
+    this.globalSrv.get('lastEmo').then(x => {
       this.lastEmo = x;
     });
-    this.globalSrv.get('pushData').subscribe(x => {
+    this.globalSrv.get('pushData').then(x => {
       if (x != null)
         this.evalNotification(x);
     })
@@ -123,15 +123,15 @@ export class UsuarioPage implements OnInit {
     }, 10000);
 
     this.fs.saveEmotion(reg).then(x => {
-      this.appSrv.message('Se ha registrado la emocion!');
+      this.appSrv.message('Aviso: ','Se ha registrado la emocion!');
       this.lastEmo = reg;
       this.globalSrv.save('lastEmo', this.lastEmo);
     }).catch(err => {
-      this.appSrv.message('Ha ocurrido un error al registrar la emocion!');
+      this.appSrv.message('Error: ', 'Ha ocurrido un error al registrar la emocion!');
     })
   }
   pressEmo(ev, emo) {
-    this.appSrv.message('Abriendo opciones.....');
+    this.appSrv.message('Aviso: ','Abriendo opciones.....');
   }
   getColor(col) {
     var exp = 'radial-gradient(' + col + ' 63%, #fff 79%)';
@@ -139,17 +139,17 @@ export class UsuarioPage implements OnInit {
   }
 
   private logout(){
-    this.appSrv.message('Saliendo...');
+    this.appSrv.message('Aviso: ','Saliendo...');
     this.globalSrv.save('user', null);
     this.authSrv.signOutUser();
     this.navCtrl.setRoot('LoginPage');
   }
   private evalNotification(data) {
     if (data.type == "config") {
-      this.appSrv.message('Configuracion remota');
+      this.appSrv.message('Aviso: ', 'Configuracion remota');
     }
     if (data.type == "chat") {
-      this.appSrv.message('Mensaje remoto');
+      this.appSrv.message('Aviso: ','Mensaje remoto');
     }
   }
 }

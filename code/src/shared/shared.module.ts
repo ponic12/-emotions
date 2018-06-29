@@ -1,22 +1,14 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
 
-import { StorageService } from './services/storage.service';
-import { HttpIntercept } from './services/http.interceptor';
-
+import { StorageService } from './services/storage.service'
 import { FwkServicesModule, ApplicationService, GlobalService } from 'fwk-services'
+
 
 @NgModule({
    imports: [
       FwkServicesModule,
-      HttpClientModule,
-      IonicStorageModule.forRoot()
-   ]
-})
-@NgModule({
-   imports: [
       HttpClientModule,
       IonicStorageModule.forRoot()
    ],
@@ -33,12 +25,8 @@ export class SharedModule {
          providers: [
             ApplicationService,
             StorageService,
-            GlobalService,
-            {
-               provide: HTTP_INTERCEPTORS,
-               useClass: HttpIntercept,
-               multi: true,
-            }]
-      };
+            GlobalService
+         ]
+      }
    }
 }
