@@ -1,69 +1,62 @@
-import * as functions from 'firebase-functions'
-import * as admin from 'firebase-admin'
-//import * as moment from 'moment'
-
-admin.initializeApp(functions.config().firebase)
-
-export const emotionEvent = functions.database.ref('emotions/{eid}').onCreate((event, ctx) => {
-   const after = event.val()
-   //const eid = ctx.params.eid
-   ////////////////////////////////////////////////////////////
-
-   const d = new Date(after.datetime);
-   const yyyy = d.getFullYear();
-   const sm = (d.getMonth() + 1); 
-   const mm = ("0" + sm).slice(-2);
-   const sd = d.getDate();
-   const dd = ("0" + sd).slice(-2);
-   const dstr = yyyy + mm + dd;
-   const key = after.user + '_' + dstr;
-   const p = aggregateTotals(key, after.emotion);
-   return p
-})
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+admin.initializeApp(functions.config().firebase);
+exports.emotionEvent = functions.database.ref('emotions/{eid}').onCreate((event, ctx) => {
+    const after = event.val();
+    const eid = ctx.params.eid;
+    ////////////////////////////////////////////////////////////
+    const d = new Date(after.datetime);
+    const yyyy = d.getFullYear();
+    const sm = (d.getMonth() + 1);
+    const mm = ("0" + sm).slice(-2);
+    const sd = d.getDate();
+    const dd = ("0" + sd).slice(-2);
+    const dstr = yyyy + mm + dd;
+    const key = after.user + '_' + dstr;
+    const p = aggregateTotals(key, after.emotion);
+    return p;
+});
 function aggregateTotals(key, emo) {
-   const ref = admin.firestore().collection('totalsByDate').doc(key)
-   const pget = ref.get()
-       .then(doc => {
-           const item = doc.data();
-           //console.log('totalsByDate reg: ', item);
-
-           if (item) {
-               if (item[emo])
-                   item[emo] = item[emo] + 1;
-               else
-                   item[emo] = 1;
-               //console.log('update item: ', item);
-               const pset1 = ref.set(item)
-               pset1.then(c => console.log('FIN: update totalsByDate: ', key))
-               .catch(err=>{
-                  console.log('error: ', err)
-               })
-           }
-           else {// NUEVO registro
-               const x = {};
-               x[emo] = 1;
-               //console.log('insert item: ', x);
-               const pset2 = ref.set(x)
-               pset2.then(c => console.log('FIN: new totalsByDate: ', key))
-               .catch(err=>{
-                  console.log('error: ', err)
-               })
-           }
-       })
-       .catch(err => {
-           console.log('Error: updating key totals:', err);
-       });
-   return pget;
+    const ref = admin.firestore().collection('totalsByDate').doc(key);
+    const pget = ref.get()
+        .then(doc => {
+        const item = doc.data();
+        //console.log('totalsByDate reg: ', item);
+        if (item) {
+            if (item[emo])
+                item[emo] = item[emo] + 1;
+            else
+                item[emo] = 1;
+            //console.log('update item: ', item);
+            const pset1 = ref.set(item);
+            pset1.then(c => console.log('FIN: update totalsByDate: ', key))
+                .catch(err => {
+                console.log('error: ', err);
+            });
+        }
+        else { // NUEVO registro
+            const x = {};
+            x[emo] = 1;
+            //console.log('insert item: ', x);
+            const pset2 = ref.set(x);
+            pset2.then(c => console.log('FIN: new totalsByDate: ', key))
+                .catch(err => {
+                console.log('error: ', err);
+            });
+        }
+    })
+        .catch(err => {
+        console.log('Error: updating key totals:', err);
+    });
+    return pget;
 }
-
 // export const emotionEvent = functions.https.onRequest((request, response) => {
 //    const arr = request.params[0].split('/')
 //    const idEvt = arr[1]
 //    const idUsr = arr[2]
-
 //    console.log('arr: ', arr)
-
 //    admin.firestore().collection("events").doc(idEvt).get()
 //       .then(dsse => {
 //          const evt = dsse.data()
@@ -125,3 +118,4 @@ function aggregateTotals(key, emo) {
 //          response.status(500).send(err)
 //       })
 // })
+//# sourceMappingURL=index.js.map
