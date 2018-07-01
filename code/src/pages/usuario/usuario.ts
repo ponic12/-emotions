@@ -3,15 +3,15 @@ import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { Platform, IonicPage, ActionSheetController } from 'ionic-angular';
 
 import { Emotion } from '../../shared/interfaces/emotion';
-import { User } from '../../shared/core/user';
 
+import { AuthService } from 'fwk-auth';
 import { ApplicationService, GlobalService } from 'fwk-services';
 import { FirebaseService } from '../../shared/services/firebase.service';
 import { PushingService } from '../../shared/services/pushing.service';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { AuthService } from '../../shared/core/auth.service';
+
 
 
 
@@ -22,7 +22,7 @@ import { AuthService } from '../../shared/core/auth.service';
 })
 export class UsuarioPage implements OnInit {
   emotions: any;
-  user: User = { username: '', photoURL: '../../assets/imgs/person.png' };
+  user: any = { username: '', photoURL: '../../assets/imgs/person.png' };
   disableButtons: boolean = false;
   lastEmo: any;
   photoPath:string;

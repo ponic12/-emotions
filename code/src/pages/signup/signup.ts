@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core'
+import { NavController, IonicPage } from 'ionic-angular'
 
-import { AuthService } from '../../shared/core/auth.service';
-import { ApplicationService, GlobalService } from 'fwk-services';
+import { AuthService } from 'fwk-auth'
 
 @IonicPage()
 @Component({
@@ -15,9 +14,6 @@ export class SignUpPage implements OnInit {
   password: string;
 
   constructor(
-    private globalSrv: GlobalService,
-    private appSrv: ApplicationService,
-    private navCtrl: NavController,
     private authSrv: AuthService
   ) {
     console.log('SignUpPage constructor');

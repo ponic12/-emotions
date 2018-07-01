@@ -2,22 +2,21 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 
 import { LoginPage } from './login';
-import { FirebaseService } from '../../shared/services/firebase.service';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-  imports: [
-    IonicPageModule.forChild(LoginPage),
-  ],
-  declarations: [
-    LoginPage
-  ],
-  entryComponents: [ ],
-  providers: [
-    FirebaseService
-  ]
+   imports: [
+      SharedModule.forRoot(),
+      IonicPageModule.forChild(LoginPage),
+   ],
+   declarations: [
+      LoginPage
+   ],
+   entryComponents: [],
+   providers: [ ]
 })
 export class LoginModule {
-  constructor() {
-    console.log('LoginModule constructor');
-  }
+   constructor() {
+      console.log('LoginModule constructor');
+   }
 }

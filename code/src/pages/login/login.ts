@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
-import { AuthService } from '../../shared/core/auth.service';
+import { AuthService } from 'fwk-auth';
 import { ApplicationService, GlobalService } from 'fwk-services';
 import { FirebaseService } from '../../shared/services/firebase.service';
 
