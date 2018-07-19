@@ -9,13 +9,7 @@ import { PushingService } from './services/pushing.service'
 
 import { FwkServicesModule, ApplicationService, GlobalService } from 'fwk-services'
 import { FwkAuthModule, AuthService } from 'fwk-auth'
-import 'firebase/storage'; 
-import { AngularFireModule } from 'angularfire2'
 import { AngularFireAuth } from 'angularfire2/auth'
-import { AngularFirestoreModule } from 'angularfire2/firestore'
-import { FirebaseService } from './services/firebase.service'
-import { FIREBASE_CONFIG } from './services/firebase.config'
-
 
 @NgModule({
    imports: [
@@ -24,9 +18,7 @@ import { FIREBASE_CONFIG } from './services/firebase.config'
       CommonModule,
       IonicModule,
       HttpClientModule,
-      IonicStorageModule.forRoot(),
-      AngularFirestoreModule,
-      AngularFireModule.initializeApp(FIREBASE_CONFIG)
+      IonicStorageModule.forRoot()
    ],
    providers: []   
 })
@@ -38,7 +30,6 @@ export class SharedModule {
             PushingService,
             AuthService,
             AngularFireAuth,
-            FirebaseService,
             ApplicationService,
             GlobalService            
          ]
