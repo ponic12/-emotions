@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.feellife.android" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <platform name="android">
-        <preference name="APP_SECRET" value="853cb83e-7ace-4930-be08-20e06056c927" />
+        <preference name="CodePushDeploymentKey" value="853cb83e-7ace-4930-be08-20e06056c927" />
     </platform>
     <name>Emotions</name>
     <description>An awesome Ionic/Cordova app.</description>
