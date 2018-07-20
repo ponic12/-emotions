@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////////
 code-push
 ////////////////////////////////////////////////////////////////////////
-ionic cordova plugin add cordova-plugin-appcenter-crashes
 ionic cordova plugin add cordova-plugin-appcenter-analytics
+ionic cordova plugin add cordova-plugin-appcenter-crashes
 ionic cordova plugin add cordova-plugin-appcenter-push
 ionic cordova plugin add cordova-plugin-whitelist    => (Asegura que este este plugin)
 ionic cordova plugin ls     => (Verifica los plugins instalados)
