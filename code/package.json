@@ -24,7 +24,9 @@
     "@angular/tsc-wrapped": "4.4.6",
     "@firebase/app": "0.1.10",
     "@firebase/webchannel-wrapper": "^0.2.8",
+    "@ionic-native/code-push": "^4.10.0",
     "@ionic-native/core": "4.3.3",
+    "@ionic-native/network": "^4.10.0",
     "@ionic-native/social-sharing": "4.3.3",
     "@ionic-native/splash-screen": "4.3.3",
     "@ionic-native/status-bar": "4.3.3",
@@ -35,6 +37,7 @@
     "cordova-android": "6.3.0",
     "cordova-plugin-appcenter-analytics": "^0.1.7",
     "cordova-plugin-appcenter-crashes": "^0.1.7",
+    "cordova-plugin-appcenter-push": "^0.1.7",
     "cordova-plugin-appcenter-shared": "^0.1.6",
     "cordova-plugin-browsertab": "0.2.0",
     "cordova-plugin-buildinfo": "2.0.1",
@@ -51,7 +54,7 @@
     "es6-promise-plugin": "^4.1.0",
     "firebase": "^4.13.1",
     "fwk-auth": "0.0.2",
-    "fwk-services": "0.0.14",
+    "fwk-services": "0.0.33",
     "ionic-angular": "3.9.2",
     "ionic-plugin-keyboard": "^2.2.1",
     "ionicons": "3.0.0",
@@ -80,7 +83,8 @@
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-appcenter-analytics": {},
-      "cordova-plugin-appcenter-crashes": {}
+      "cordova-plugin-appcenter-crashes": {},
+      "cordova-plugin-appcenter-push": {}
     },
     "platforms": [
       "android"
