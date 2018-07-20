@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Platform } from 'ionic-angular'
+import { AngularFirestore } from 'angularfire2/firestore'
 import { StatusBar } from '@ionic-native/status-bar'
 import { SplashScreen } from '@ionic-native/splash-screen'
 import { CodePush, SyncStatus } from '@ionic-native/code-push'
@@ -17,12 +18,16 @@ export class EmotionsApp implements OnInit, OnDestroy {
 
    constructor(
       private codePush: CodePush,
+      private afs: AngularFirestore,
       private appSrv: ApplicationService,
       private platform: Platform,
       private statusBar: StatusBar,
       private splashScreen: SplashScreen
    ) {
       console.log('EmotionsApp constructor');
+      this.afs.firestore.settings({ timestampsInSnapshots: true })
+      this.afs.firestore.enablePersistence()
+
       platform.ready().then(() => {
          this.codePush.sync({}, (progress) => {
             this.progressStatus = JSON.stringify(progress)
@@ -50,7 +55,10 @@ export class EmotionsApp implements OnInit, OnDestroy {
                   this.appSrv.message('update ignored')
                   break;
                case SyncStatus.UPDATE_INSTALLED:
-                  this.appSrv.basicAlert('update installed')
+                  this.appSrv.message('update installed')
+                  setTimeout(() => {
+                     window.location.reload();
+                  }, 1000);
                   break;
                case SyncStatus.ERROR:
                   this.appSrv.basicAlert('an error occurred')
