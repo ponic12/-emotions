@@ -72,7 +72,7 @@ export class EmotionsApp implements OnInit, OnDestroy {
          splashScreen.hide()
       }).catch(err => {
          console.error(err)
-         this.appSrv.basicAlert(err.message, 'Error!')
+         this.appSrv.basicAlert(err, 'Error!')
       })
    }
 

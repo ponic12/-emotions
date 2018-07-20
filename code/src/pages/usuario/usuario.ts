@@ -53,7 +53,7 @@ export class UsuarioPage implements OnInit {
 
     let dn = this.navParams.get('displayName');
     if (dn) 
-      this.appSrv.message('Aviso: ','Bienvenido: ' + dn);
+      this.appSrv.message('Bienvenido: ' + dn);
     
     let ph = this.navParams.get('photoURL');
     if (ph)
@@ -123,7 +123,7 @@ export class UsuarioPage implements OnInit {
     }, 10000);
 
     this.fs.saveEmotion(reg).then(x => {
-      this.appSrv.message('Aviso: ','Se ha registrado la emocion!');
+      this.appSrv.message('Se ha registrado la emocion!');
       this.lastEmo = reg;
       this.globalSrv.save('lastEmo', this.lastEmo);
     }).catch(err => {
@@ -131,7 +131,7 @@ export class UsuarioPage implements OnInit {
     })
   }
   pressEmo(ev, emo) {
-    this.appSrv.message('Aviso: ','Abriendo opciones.....');
+    this.appSrv.message('Abriendo opciones.....');
   }
   getColor(col) {
     var exp = 'radial-gradient(' + col + ' 63%, #fff 79%)';
@@ -139,17 +139,17 @@ export class UsuarioPage implements OnInit {
   }
 
   private logout(){
-    this.appSrv.message('Aviso: ','Saliendo...');
+    this.appSrv.message('Saliendo...');
     this.globalSrv.save('user', null);
     this.authSrv.signOutUser();
     this.navCtrl.setRoot('LoginPage');
   }
   private evalNotification(data) {
     if (data.type == "config") {
-      this.appSrv.message('Aviso: ', 'Configuracion remota');
+      this.appSrv.message('Configuracion remota');
     }
     if (data.type == "chat") {
-      this.appSrv.message('Aviso: ','Mensaje remoto');
+      this.appSrv.message('Mensaje remoto');
     }
   }
 }
