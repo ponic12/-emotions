@@ -43,6 +43,7 @@ export class LoginPage implements OnInit, OnDestroy {
    }
    ngOnInit() {
       console.log('LoginPage init');
+      this.appSrv.showLoading()      
       this.authSrv.verifyLoggedIn().subscribe(data => {
          this.appSrv.hideLoading()
          if (data) {
@@ -62,14 +63,6 @@ export class LoginPage implements OnInit, OnDestroy {
                   })
                }
             })
-
-            // var o = {
-            //    username: this.fs.getUserKey(data.displayName),
-            //    email: data.email,
-            //    photoURL: data.photoURL
-            // };
-            // this.globalSrv.save('user', o);
-            // this.go(data);
          }
       });
    }

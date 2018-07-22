@@ -1,23 +1,53 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+//import * as moment from 'moment'
 admin.initializeApp(functions.config().firebase);
-exports.emotionEvent = functions.database.ref('emotions/{eid}').onCreate((event, ctx) => {
-    const after = event.val();
-    const eid = ctx.params.eid;
+exports.emotionEvent = functions.firestore.document('emotions/{eid}').onWrite((event) => {
+    const after = event.after;
+    //const eid = ctx.params.eid
     ////////////////////////////////////////////////////////////
-    const d = new Date(after.datetime);
+    const d = new Date(after.get('datetime'));
     const yyyy = d.getFullYear();
     const sm = (d.getMonth() + 1);
     const mm = ("0" + sm).slice(-2);
     const sd = d.getDate();
     const dd = ("0" + sd).slice(-2);
     const dstr = yyyy + mm + dd;
-    const key = after.user + '_' + dstr;
-    const p = aggregateTotals(key, after.emotion);
+    const key = after.get('user') + '_' + dstr;
+    const p = aggregateTotals(key, after.get('emotion'));
     return p;
 });
+exports.realtimeDB = functions.database.ref('test/{eid}').onCreate((snapshot, context) => {
+    const eid = context.params.eid;
+    const msgData = snapshot.val();
+    const txt = msgData.text + " OK! on id: " + eid;
+    const p = snapshot.ref.update({ text: txt });
+    return p;
+});
+exports.getStats = functions.https.onRequest((request, response) => __awaiter(this, void 0, void 0, function* () {
+    try {
+        const param = request.params.get('day');
+        console.log('param: ', param);
+        const snapshot = yield admin.firestore().collection('totalsByDate').doc(param).get();
+        const data = snapshot.data();
+        console.log('data: ', data);
+        response.send(data);
+    }
+    catch (error) {
+        console.log('error: ', error);
+        response.status(500).send(error);
+    }
+}));
 function aggregateTotals(key, emo) {
     const ref = admin.firestore().collection('totalsByDate').doc(key);
     const pget = ref.get()

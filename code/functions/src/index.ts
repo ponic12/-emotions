@@ -4,22 +4,48 @@ import * as admin from 'firebase-admin'
 
 admin.initializeApp(functions.config().firebase)
 
-export const emotionEvent = functions.database.ref('emotions/{eid}').onCreate((event, ctx) => {
-   const after = event.val()
+
+export const emotionEvent = functions.firestore.document('emotions/{eid}').onWrite((event) => {
+   const after = event.after
    //const eid = ctx.params.eid
    ////////////////////////////////////////////////////////////
 
-   const d = new Date(after.datetime);
-   const yyyy = d.getFullYear();
-   const sm = (d.getMonth() + 1); 
-   const mm = ("0" + sm).slice(-2);
-   const sd = d.getDate();
-   const dd = ("0" + sd).slice(-2);
-   const dstr = yyyy + mm + dd;
-   const key = after.user + '_' + dstr;
-   const p = aggregateTotals(key, after.emotion);
+   const d = new Date(after.get('datetime'))
+   const yyyy = d.getFullYear()
+   const sm = (d.getMonth() + 1) 
+   const mm = ("0" + sm).slice(-2)
+   const sd = d.getDate()
+   const dd = ("0" + sd).slice(-2)
+   const dstr = yyyy + mm + dd
+   const key = after.get('user') + '_' + dstr
+   const p = aggregateTotals(key, after.get('emotion'))
    return p
 })
+
+export const realtimeDB = functions.database.ref('test/{eid}').onCreate((snapshot, context) => {
+   const eid = context.params.eid
+
+   const msgData = snapshot.val()
+   const txt = msgData.text + " OK! on id: " + eid
+   const p = snapshot.ref.update({text: txt})
+   return p
+})
+
+export const getStats = functions.https.onRequest(async(request, response) => {
+   try {
+      const param = request.params.get('day')
+      console.log('param: ', param)
+      const snapshot = await admin.firestore().collection('totalsByDate').doc(param).get()
+      const data = snapshot.data()
+      console.log('data: ', data)
+      response.send(data)
+   } catch (error) {
+      console.log('error: ', error)
+      response.status(500).send(error)
+   }
+})
+
+
 
 function aggregateTotals(key, emo) {
    const ref = admin.firestore().collection('totalsByDate').doc(key)
@@ -56,6 +82,12 @@ function aggregateTotals(key, emo) {
        });
    return pget;
 }
+
+
+
+
+
+
 
 // export const emotionEvent = functions.https.onRequest((request, response) => {
 //    const arr = request.params[0].split('/')
