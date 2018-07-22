@@ -16,7 +16,6 @@ export class EmotionsApp implements OnInit, OnDestroy {
    title: string = "Emotions";
    version: string = "v1.0";
    networkStatus: boolean;
-   rootPage: any = 'LoginPage';
 
    constructor(
       private zone: NgZone,
@@ -30,7 +29,6 @@ export class EmotionsApp implements OnInit, OnDestroy {
       console.log('EmotionsApp constructor');
       this.afs.firestore.settings({ timestampsInSnapshots: true })
       this.afs.firestore.enablePersistence()
-
 
       this.platform.ready().then(() => {
          console.log('platform ready....')
@@ -92,7 +90,7 @@ export class EmotionsApp implements OnInit, OnDestroy {
          this.splashScreen.hide()
       }).catch(err => {
          console.error(err)
-         this.appSrv.basicAlert(err, 'Error!')
+         this.appSrv.message(err)
       })
    }
 
