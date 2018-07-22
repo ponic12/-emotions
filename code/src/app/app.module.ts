@@ -8,6 +8,7 @@ import { CodePush } from '@ionic-native/code-push'
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular'
 import { EmotionsApp } from './app.component'
 import { SharedModule } from '../shared/shared.module'
+import { ProgressBarComponent } from '../shared/components/progress-bar/progress-bar'
 
 import 'firebase/storage';
 import { AngularFireModule } from 'angularfire2'
@@ -17,7 +18,8 @@ import { FIREBASE_CONFIG } from '../shared/services/firebase.config'
 
 @NgModule({
    declarations: [
-      EmotionsApp
+      EmotionsApp,
+      ProgressBarComponent
    ],
    imports: [
       BrowserModule,
@@ -29,7 +31,8 @@ import { FIREBASE_CONFIG } from '../shared/services/firebase.config'
    ],
    bootstrap: [IonicApp],
    entryComponents: [
-      EmotionsApp
+      EmotionsApp,
+      ProgressBarComponent
    ],
    providers: [
       CodePush,
