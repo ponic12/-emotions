@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:779781116669:android:c86e6e2d724494eb",
+        "mobilesdk_app_id": "1:779781116669:android:916f71581634514c",
         "android_client_info": {
-          "package_name": "com.feellife.android"
+          "package_name": "com.pp.emotions"
         }
       },
       "oauth_client": [
