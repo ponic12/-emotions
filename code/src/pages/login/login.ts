@@ -16,8 +16,8 @@ import { Subscription } from 'rxjs'
 export class LoginPage implements OnInit, OnDestroy {
    subUsr: Subscription
    subAuth: Subscription
-
-   username: string;
+   
+   displayName: string
    email: string;
    password: string;
    todo: FormGroup;
@@ -32,7 +32,7 @@ export class LoginPage implements OnInit, OnDestroy {
    ) {
       console.log('LoginPage constructor');
       this.todo = this.formBuilder.group({
-         fcn_username: ['', [Validators.required]],
+         fcn_email: ['', [Validators.required]],
          fcn_password: ['', [Validators.required]]
       });
    }

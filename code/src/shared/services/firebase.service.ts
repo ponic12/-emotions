@@ -15,8 +15,7 @@ export class FirebaseService {
    test$: Observable<any[]>;
 
    constructor(private afs: AngularFirestore) {
-      console.log('FirebaseService constructor');
-      // afs.firestore.settings({timestampsInSnapshots:true})
+      console.log('FirebaseService constructor')
       this.usersRef = this.afs.collection('users')
    }
 
@@ -42,8 +41,8 @@ export class FirebaseService {
       return this.test$;
    }
 
-   getTotals(username): Observable<any> {
-      var un = this.getUserKey(username);
+   getTotals(uid): Observable<any> {
+      var un = this.getUserKey(uid);
       var d = new Date();
       var yyyy = d.getFullYear();
       var sm = (d.getMonth() + 1);
@@ -64,8 +63,8 @@ export class FirebaseService {
       // var p = ref.add({ ...pl });
       return p;
    }
-   getUserKey(username): string {
-      var str = username.replace(/\s/g, '');
+   getUserKey(uid): string {
+      var str = uid.replace(/\s/g, '');
       str = str.toUpperCase();
       return str;
    }
