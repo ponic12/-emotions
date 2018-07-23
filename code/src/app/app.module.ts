@@ -8,21 +8,25 @@ import { CodePush } from '@ionic-native/code-push'
 
 import { EmotionsApp } from './app.component'
 import { SharedModule } from '../shared/shared.module'
-import { ProgressBarComponent } from '../shared/components/progress-bar/progress-bar'
 
 import 'firebase/storage';
+import { AngularFireAuth } from 'angularfire2/auth'
 import { AngularFireModule } from 'angularfire2'
 import { AngularFirestoreModule } from 'angularfire2/firestore'
 import { FirebaseService } from '../shared/services/firebase.service'
 import { FIREBASE_CONFIG } from '../shared/services/firebase.config'
 
+import { FwkServicesModule, ApplicationService, GlobalService, ProgressBarComponent } from 'fwk-services'
+import { FwkAuthModule, AuthService } from 'fwk-auth'
+
 
 @NgModule({
    declarations: [
-      EmotionsApp,
-      ProgressBarComponent
+      EmotionsApp
    ],
    imports: [
+      FwkAuthModule,
+      FwkServicesModule,
       BrowserModule,
       BrowserAnimationsModule,
       IonicModule.forRoot(EmotionsApp),
@@ -36,6 +40,10 @@ import { FIREBASE_CONFIG } from '../shared/services/firebase.config'
       ProgressBarComponent
    ],
    providers: [
+      AuthService,
+      AngularFireAuth,
+      ApplicationService,
+      GlobalService,
       CodePush,
       FirebaseService,
       StatusBar,

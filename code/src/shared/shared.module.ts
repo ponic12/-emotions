@@ -7,14 +7,9 @@ import { CommonModule } from '@angular/common'
 import { StorageService } from './services/storage.service'
 import { PushingService } from './services/pushing.service'
 
-import { FwkServicesModule, ApplicationService, GlobalService } from 'fwk-services'
-import { FwkAuthModule, AuthService } from 'fwk-auth'
-import { AngularFireAuth } from 'angularfire2/auth'
 
 @NgModule({
    imports: [
-      FwkAuthModule,
-      FwkServicesModule,
       CommonModule,
       IonicModule,
       HttpClientModule,
@@ -27,11 +22,7 @@ export class SharedModule {
       return {
          ngModule: SharedModule,
          providers: [
-            PushingService,
-            AuthService,
-            AngularFireAuth,
-            ApplicationService,
-            GlobalService            
+            PushingService           
          ]
       }
    }
